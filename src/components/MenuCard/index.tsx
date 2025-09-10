@@ -3,10 +3,11 @@
     import { MenuItem } from '../../pages/Restaurant'
 
     interface MenuCardProps {
-    menuItem: MenuItem
+    item: MenuItem
+    onClick: () => void
     }
 
-    const MenuCard: React.FC<MenuCardProps> = ({ menuItem }) => {
+    const MenuCard: React.FC<MenuCardProps> = ({ item, onClick }) => {
     const formatPrice = (price: number) => {
         return price.toLocaleString('pt-BR', {
         style: 'currency',
@@ -16,12 +17,12 @@
 
     return (
         <Card>
-        <MenuImage src={menuItem.image} alt={menuItem.name} />
+        <MenuImage src={item.image} alt={item.name} />
         <MenuInfo>
-            <MenuTitle>{menuItem.name}</MenuTitle>
-            <MenuDescription>{menuItem.description}</MenuDescription>
-            <MenuPrice>{formatPrice(menuItem.price)}</MenuPrice>
-            <AddButton>Adicionar ao carrinho</AddButton>
+            <MenuTitle>{item.name}</MenuTitle>
+            <MenuDescription>{item.description}</MenuDescription>
+            <MenuPrice>{formatPrice(item.price)}</MenuPrice>
+            <AddButton onClick={onClick}>Adicionar ao carrinho</AddButton>
         </MenuInfo>
         </Card>
     )

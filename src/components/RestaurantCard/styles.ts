@@ -5,6 +5,15 @@ export const Card = styled.div`
   border: 1px solid #e66767;
   position: relative;
   margin-bottom: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -17,6 +26,11 @@ export const RestaurantImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+
+  ${Card}:hover & {
+    transform: scale(1.05);
+  }
 `
 
 export const TagContainer = styled.div`

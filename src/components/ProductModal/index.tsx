@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MenuItem } from '../../pages/Restaurant'
 import { useCart } from '../../contexts/CartContext'
+import { useToastContext } from '../../contexts/ToastContext'
 import {
   Overlay,
   ModalContainer,
@@ -23,7 +24,8 @@ interface ProductModalProps {
 }
 
 const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose }) => {
-  const { addItem, toggleCart } = useCart()
+  const { addItem } = useCart()
+  const { showToast } = useToastContext()
 
   if (!isOpen || !product) return null
 
@@ -36,8 +38,11 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
 
   const handleAddToCart = () => {
     addItem(product)
+    showToast(
+      `${product.name} foi adicionado ao carrinho!`, 
+      'Item adicionado'
+    )
     onClose()
-    toggleCart()
   }
 
   return (
@@ -49,7 +54,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
           <ProductInfo>
             <ProductTitle>{product.name}</ProductTitle>
             <ProductDescription>{product.description}</ProductDescription>
-            <ProductServes>Serve: de 2 a 3 pessoas</ProductServes>
+            <ProductServes>Serve: {product.serves || 'de 2 a 3 pessoas'}</ProductServes>
             <ProductPrice>{formatPrice(product.price)}</ProductPrice>
             <ButtonContainer>
               <AddToCartButton onClick={handleAddToCart}>

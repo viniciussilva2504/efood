@@ -78,7 +78,7 @@
             <Container>
             <MenuGrid>
                 {hamburgueriaMenu.map(item => (
-                <MenuCard key={item.id} menuItem={item} />
+                <MenuCard key={item.id} item={item} onClick={() => {}} />
                 ))}
             </MenuGrid>
             </Container>
