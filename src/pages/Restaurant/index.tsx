@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '../../components/RestaurantCard'
 import MenuCard from '../../components/MenuCard'
@@ -38,7 +38,7 @@ const RestaurantPage: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null)
   const [modalOpen, setModalOpen] = useState(false)
 
-  const loadRestaurant = async () => {
+  const loadRestaurant = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -60,11 +60,11 @@ const RestaurantPage: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [id])
 
   useEffect(() => {
     loadRestaurant()
-  }, [id])
+  }, [loadRestaurant])
 
   const handleProductClick = (product: MenuItem) => {
     setSelectedProduct(product)
