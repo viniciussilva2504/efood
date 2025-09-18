@@ -9,17 +9,17 @@ const Footer = () => (
     <Logo src={logo} alt="Efood" />
     <ListLogos>
       <li>
-        <a href="#">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
           <img src={instagramLogo} alt="Instagram" />
         </a>
       </li>
       <li id="twitter">
-        <a href="#">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
           <img src={twitterLogo} alt="twitter" />
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
           <img src={facebookLogo} alt="facebook" />
         </a>
       </li>

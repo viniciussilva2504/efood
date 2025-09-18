@@ -13,7 +13,7 @@ import {
 import { Container } from '../../styles'
 import { Link, useParams } from 'react-router-dom'
 import { open } from '../../store/reducers/Cart'
-import { useGetCardapioQuery, useGetRestauranteQuery } from '../../services/api'
+import { useGetRestauranteQuery } from '../../services/api'
 import type { RootReducer } from '../../store/index'
 
 type Props = {

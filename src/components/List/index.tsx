@@ -1,7 +1,6 @@
 import { Container } from '../../styles'
 import Restaurant from '../Restaurants'
 import { List } from './styles'
-import type { TagInfo } from '../Restaurants'
 import type { Restaurants } from '../../pages/Home'
 
 type Props = {

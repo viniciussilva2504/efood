@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { CardapioItem } from '../../pages/Home'
-export type CartState = typeof initialState
+
 export type CartItem = {
   id: number
   nome: string
@@ -9,14 +9,17 @@ export type CartItem = {
   preco: number
   quantidade: number
 }
-type initialState = {
+
+type CartState = {
   items: CardapioItem[]
   isOpen: boolean
   isOrder: boolean
   isPayment: boolean
 }
 
-const initialState: initialState = {
+export type { CartState }
+
+const initialState: CartState = {
   items: [],
   isOpen: false,
   isOrder: false,
