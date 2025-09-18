@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import type { CardapioItem, Restaurants } from '../../pages/Home'
 import Food from '../Food'

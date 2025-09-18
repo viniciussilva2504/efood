@@ -1,7 +1,3 @@
-import { useDispatch } from 'react-redux'
-
-import { add, open } from '../../store/reducers/Cart'
-
 import { formataPreco } from '../../utils/formatters'
 
 import close from '../../assets/images/fechar.png'
@@ -29,24 +25,6 @@ const ProductModal = ({
   isOpen,
   onClose
 }: Props) => {
-  const dispatch = useDispatch()
-
-  const addToCart = () => {
-    dispatch(
-      add({
-        foto: photo,
-        nome: name,
-        descricao: description,
-        porcao: portion,
-        preco: price,
-        id,
-        quantidade: 1
-      })
-    )
-    dispatch(open())
-    onClose()
-  }
-
   const getDescription = (description: string) => {
     if (description.length > 90) {
       return description.slice(0, 87) + '...'
@@ -65,8 +43,8 @@ const ProductModal = ({
           <h4>{name}</h4>
           <p>{getDescription(description)}</p>
           <p>Serve: de {portion}</p>
-          <S.Button onClick={addToCart}>
-            Adicionar ao carrinho - {formataPreco(price)}
+          <S.Button onClick={onClose}>
+            Ver mais detalhes - {formataPreco(price)}
           </S.Button>
         </div>
       </S.ModalContent>

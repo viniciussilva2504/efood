@@ -39,7 +39,7 @@ export default function Food({
         <TitleFood>{nome}</TitleFood>
         <DescriptionFood>{limitarDescricao(descricao)}</DescriptionFood>
         <StyledButton onClick={() => setModalIsOpen(true)}>
-          Adicionar ao carrinho{' '}
+          Mais informações
         </StyledButton>
       </div>
       {modalIsOpen && (
