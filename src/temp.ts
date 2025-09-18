@@ -1,2 +1,2 @@
-// Temporary file to trigger TypeScript recompilation
-export default {}
+const temp = {}
+export default temp

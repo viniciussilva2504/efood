@@ -6,10 +6,10 @@ export type RootState = ReturnType<typeof store.getState>
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
-    [api.reducerPath]: api.reducer // ✅ add the API reducer
+    [api.reducerPath]: api.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware) // ✅ add the API middleware
+    getDefaultMiddleware().concat(api.middleware)
 })
 
 export type RootReducer = ReturnType<typeof store.getState>

@@ -24,7 +24,7 @@
         }
 
         const mockMenuItemsByRestaurant: { [key: number]: MenuItem[] } = {
-        1: [ // Hioki Sushi
+        1: [
             {
             id: 1,
             name: 'Sashimi Misto',
