@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react'
-import { MenuItem } from '../pages/Restaurant'
+import { CardapioItem } from '../pages/Home'
 
-export interface CartItem extends MenuItem {
+export interface CartItem extends CardapioItem {
   quantity: number
 }
 
@@ -13,7 +13,7 @@ interface CartState {
 
 interface CartContextType {
   state: CartState
-  addItem: (item: MenuItem) => void
+  addItem: (item: CardapioItem) => void
   removeItem: (id: number) => void
   updateQuantity: (id: number, quantity: number) => void
   clearCart: () => void
@@ -21,7 +21,7 @@ interface CartContextType {
 }
 
 type CartAction =
-  | { type: 'ADD_ITEM'; payload: MenuItem }
+  | { type: 'ADD_ITEM'; payload: CardapioItem }
   | { type: 'REMOVE_ITEM'; payload: number }
   | { type: 'UPDATE_QUANTITY'; payload: { id: number; quantity: number } }
   | { type: 'CLEAR_CART' }
@@ -39,13 +39,13 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
-          total: state.total + action.payload.price
+          total: state.total + action.payload.preco
         }
       }
       return {
         ...state,
         items: [...state.items, { ...action.payload, quantity: 1 }],
-        total: state.total + action.payload.price
+        total: state.total + action.payload.preco
       }
     }
     case 'REMOVE_ITEM': {
@@ -54,7 +54,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         ...state,
         items: state.items.filter(item => item.id !== action.payload),
-        total: state.total - (item.price * item.quantity)
+        total: state.total - (item.preco * item.quantity)
       }
     }
     case 'UPDATE_QUANTITY': {
@@ -68,7 +68,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
-        total: state.total + (item.price * quantityDiff)
+        total: state.total + (item.preco * quantityDiff)
       }
     }
     case 'CLEAR_CART':
@@ -100,7 +100,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     total: 0
   })
 
-  const addItem = (item: MenuItem) => {
+  const addItem = (item: CardapioItem) => {
     dispatch({ type: 'ADD_ITEM', payload: item })
   }
 

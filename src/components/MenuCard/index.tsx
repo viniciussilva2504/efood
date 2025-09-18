@@ -1,9 +1,9 @@
     import React from 'react'
     import { Card, MenuImage, MenuInfo, MenuTitle, MenuDescription, MenuPrice, AddButton } from './styles'
-    import { MenuItem } from '../../pages/Restaurant'
+    import { CardapioItem } from '../../pages/Home'
 
     interface MenuCardProps {
-    menuItem: MenuItem
+    menuItem: CardapioItem
     }
 
     const MenuCard: React.FC<MenuCardProps> = ({ menuItem }) => {
@@ -16,11 +16,11 @@
 
     return (
         <Card>
-        <MenuImage src={menuItem.image} alt={menuItem.name} />
+        <MenuImage src={menuItem.foto} alt={menuItem.nome} />
         <MenuInfo>
-            <MenuTitle>{menuItem.name}</MenuTitle>
-            <MenuDescription>{menuItem.description}</MenuDescription>
-            <MenuPrice>{formatPrice(menuItem.price)}</MenuPrice>
+            <MenuTitle>{menuItem.nome}</MenuTitle>
+            <MenuDescription>{menuItem.descricao}</MenuDescription>
+            <MenuPrice>{formatPrice(menuItem.preco)}</MenuPrice>
             <AddButton>Adicionar ao carrinho</AddButton>
         </MenuInfo>
         </Card>

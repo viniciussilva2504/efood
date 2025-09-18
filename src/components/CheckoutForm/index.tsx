@@ -291,8 +291,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         <OrderSummary>
           {state.items.map(item => (
             <SummaryItem key={item.id}>
-              <span>{item.quantity}x {item.name}</span>
-              <span>{formatPrice(item.price * item.quantity)}</span>
+              <span>{item.quantity}x {item.nome}</span>
+              <span>{formatPrice(item.preco * item.quantity)}</span>
             </SummaryItem>
           ))}
           <TotalRow>
