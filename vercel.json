@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "efood-parte-1",
   "builds": [
     {
       "src": "package.json",
@@ -14,5 +15,8 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "GENERATE_SOURCEMAP": "false"
+  }
 }
