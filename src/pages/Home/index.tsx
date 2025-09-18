@@ -26,12 +26,35 @@ export type Restaurants = {
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState<Restaurants[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-      .then((resposta) => resposta.json())
-      .then((resposta) => setRestaurants(resposta))
+      .then((resposta) => {
+        if (!resposta.ok) {
+          throw new Error(`HTTP error! status: ${resposta.status}`)
+        }
+        return resposta.json()
+      })
+      .then((resposta) => {
+        setRestaurants(resposta)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar restaurantes:', err)
+        setError(err.message)
+        setLoading(false)
+      })
   }, [])
+
+  if (loading) {
+    return <div>Carregando...</div>
+  }
+
+  if (error) {
+    return <div>Erro: {error}</div>
+  }
 
   return (
     <>

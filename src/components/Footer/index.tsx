@@ -1,26 +1,22 @@
 import { ContainerFooter, Logo, ListLogos, TextFooter } from './styles'
-import logo from '../../assets/images/logo.svg'
-import instagramLogo from '../../assets/images/instagram.png'
-import twitterLogo from '../../assets/images/twitter.png'
-import facebookLogo from '../../assets/images/fb.png'
 
 const Footer = () => (
   <ContainerFooter>
-    <Logo src={logo} alt="Efood" />
+    <Logo src={`${process.env.PUBLIC_URL}/images/logo.svg`} alt="Efood" />
     <ListLogos>
       <li>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <img src={instagramLogo} alt="Instagram" />
+          <img src={`${process.env.PUBLIC_URL}/images/instagram.png`} alt="Instagram" />
         </a>
       </li>
       <li id="twitter">
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <img src={twitterLogo} alt="twitter" />
+          <img src={`${process.env.PUBLIC_URL}/images/twitter.png`} alt="twitter" />
         </a>
       </li>
       <li>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-          <img src={facebookLogo} alt="facebook" />
+          <img src={`${process.env.PUBLIC_URL}/images/fb.png`} alt="facebook" />
         </a>
       </li>
     </ListLogos>
