@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TESTE ABSOLUTO</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: white;
+        }
+        h1 { color: #e66465; }
+    </style>
+</head>
+<body>
+    <h1>🎉 SE VOCÊ VÊ ISSO, O VERCEL FUNCIONA!</h1>
+    <p>Esta é uma página HTML estática de teste.</p>
+    <p>Se isso aparecer, o problema estava no React ou na configuração.</p>
+    <p>Timestamp: <span id="time"></span></p>
+    
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString();
+        
+        // Teste de fetch básico
+        fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
+            .then(r => r.json())
+            .then(data => {
+                document.body.innerHTML += '<h2>✅ API FUNCIONA!</h2>';
+                document.body.innerHTML += '<p>Restaurantes encontrados: ' + data.length + '</p>';
+                document.body.innerHTML += '<pre>' + JSON.stringify(data[0], null, 2) + '</pre>';
+            })
+            .catch(err => {
+                document.body.innerHTML += '<h2>❌ API com problema: ' + err.message + '</h2>';
+            });
+    </script>
+</body>
+</html>
