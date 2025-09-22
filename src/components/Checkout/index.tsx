@@ -33,7 +33,7 @@ type PagamentoFormData = {
 
 const Checkout = () => {
   const navigate = useNavigate()
-  const { isPayment } = useSelector((state: RootState) => state.cart)
+  const { isPayment, items } = useSelector((state: RootState) => state.cart)
   const dispatch = useDispatch()
   const [purchase, { data, isSuccess, error }] = usePurchaseMutation()
 
@@ -41,6 +41,19 @@ const Checkout = () => {
   const fecharPedido = () => dispatch(closeOrder())
   const abrirPagamento = () => dispatch(openPayment())
   const limparPedido = () => dispatch(clear())
+
+  const getTotalPrice = () => {
+    return items.reduce((acc, item) => {
+      return acc + item.preco * (item.quantidade || 1)
+    }, 0)
+  }
+
+  const formatPrice = (price: number) => {
+    return price.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
+  }
 
   const FinishOrder = () => {
     fecharPagamento()
@@ -101,13 +114,13 @@ const Checkout = () => {
         .matches(/^[0-9]{4}$/, 'O ano deve estar no formato AAAA')
     }),
     onSubmit: (values: PagamentoFormData) => {
+      const products = items.map(item => ({
+        id: item.id,
+        price: item.preco * (item.quantidade || 1)
+      }))
+
       purchase({
-        products: [
-          {
-            id: 1,
-            price: 150
-          }
-        ],
+        products,
         delivery: {
           receiver: formikEntrega.values.name,
           address: {
@@ -177,7 +190,7 @@ const Checkout = () => {
         <>
           {isPayment ? (
             <form id="paymentForm" onSubmit={formikPagamento.handleSubmit}>
-              <OrderTitle>Pagamento - valor a pagar R$ 0</OrderTitle>
+              <OrderTitle>Pagamento - valor a pagar {formatPrice(getTotalPrice())}</OrderTitle>
 
               <OrderRow>
                 <LabelContainer>

@@ -50,3 +50,14 @@ export const Cart = styled.h3`
     text-decoration: underline;
   }
 `
+
+export const LogoLink = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+`

@@ -1,10 +1,8 @@
 type Checkout = {
-  products: [
-    {
-      id: number
-      price: number
-    }
-  ]
+  products: {
+    id: number
+    price: number
+  }[]
   delivery: {
     receiver: string
     address: {

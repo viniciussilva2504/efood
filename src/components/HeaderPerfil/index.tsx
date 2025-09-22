@@ -8,7 +8,8 @@ import {
   Banner,
   TextBanner,
   RestaurantName,
-  Cart
+  Cart,
+  LogoLink
 } from './styles'
 import { Container } from '../../styles'
 import { Link, useParams } from 'react-router-dom'
@@ -33,9 +34,11 @@ export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
     <>
       <Imagem style={{ backgroundImage: `url(${fundoImg})` }}>
         <Text>Restaurantes</Text>
-        <Link to="/">
-          <img src={logo} alt="Efood" />
-        </Link>
+        <LogoLink>
+          <Link to="/">
+            <img src={logo} alt="Efood" />
+          </Link>
+        </LogoLink>
         <Cart onClick={abreCart}>{items.length} produto(s) no carrinho</Cart>
       </Imagem>
       <Banner
