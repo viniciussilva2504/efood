@@ -20,13 +20,13 @@ const Header = ({ isRestaurantPage }: HeaderProps) => {
   }
 
   return (
-    <Imagem style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/fundo.png)` }}>
+    <Imagem style={{ backgroundImage: `url(/images/fundo.png)` }}>
       <div onClick={openCart} style={{ position: 'absolute', top: '40px', right: '32px', zIndex: 10 }}>
         <CartLink>
           Carrinho ({getTotalItems()})
         </CartLink>
       </div>
-      <Logo src={`${process.env.PUBLIC_URL}/images/logo.svg`} alt="efood" />
+      <Logo src="/images/logo.svg" alt="efood" />
       <TextHeader>
         Viva experiências gastronômicas no conforto da sua casa
       </TextHeader>
