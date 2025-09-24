@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../store'
 import {
   clear,
+  close,
   closeOrder,
   closePayment,
   openPayment
@@ -56,9 +57,14 @@ const Checkout = () => {
   }
 
   const FinishOrder = () => {
+    // Fechar todos os modais/abas laterais
     fecharPagamento()
-    navigate('/')
+    fecharPedido() 
+    dispatch(close()) // Fechar a aba lateral do carrinho
+    // Limpar carrinho
     limparPedido()
+    // Navegar para home
+    navigate('/')
   }
 
   const formikEntrega = useFormik({
