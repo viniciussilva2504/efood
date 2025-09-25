@@ -10,11 +10,22 @@ export const Imagem = styled.div`
   align-items: center;
   margin-bottom: 80px;
   position: relative;
+  padding: 0 16px;
+
+  @media (max-width: 768px) {
+    height: 320px;
+    margin-bottom: 40px;
+    padding: 0 12px;
+  }
 `
 
 export const Logo = styled.img`
   max-width: 100%;
   height: auto;
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
 `
 
 export const TextHeader = styled.p`
@@ -25,6 +36,13 @@ export const TextHeader = styled.p`
   margin-top: 138px;
   max-width: 550px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-top: 40px;
+    max-width: 320px;
+    line-height: 120%;
+  }
 `
 
 export const CartLink = styled.div`

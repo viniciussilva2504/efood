@@ -5,6 +5,10 @@ export const Card = styled.div`
   border: 1px solid #e66767;
   position: relative;
   margin-bottom: 48px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -38,6 +42,10 @@ export const Tag = styled.span`
 
 export const InfoContainer = styled.div`
   padding: 8px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `
 
 export const RestaurantInfo = styled.div`

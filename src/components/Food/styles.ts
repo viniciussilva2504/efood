@@ -11,6 +11,12 @@ export const ContainerFood = styled.div`
   div {
     padding: 8px;
   }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    height: auto;
+    min-height: 338px;
+  }
 `
 
 export const ImagemFood = styled.img`
@@ -51,4 +57,9 @@ export const StyledButton = styled.button`
   justify-content: center;
 
   border: none;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 16px);
+    max-width: 304px;
+  }
 `

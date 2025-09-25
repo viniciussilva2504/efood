@@ -9,6 +9,20 @@ export const List = styled.ul`
   padding-top: 56px;
   color: ${cores.bege};
   padding-bottom: 120px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    gap: 32px;
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
 `
 export const Modal = styled.div`
   position: fixed;

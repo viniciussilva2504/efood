@@ -23,10 +23,21 @@ const GlobalStyles = createGlobalStyle`
     @media (max-width: 1040px) {
       padding: 0 16px;
     }
+
+    @media (max-width: 768px) {
+      padding: 0 12px;
+    }
   }
 
   button {
     font-family: 'Roboto', sans-serif;
+  }
+
+  .cart-mobile {
+    @media (max-width: 768px) {
+      top: 20px !important;
+      right: 16px !important;
+    }
   }
 `
 

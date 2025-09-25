@@ -32,6 +32,11 @@ export const SideBar = styled.aside`
   background-color: ${cores.rosa};
   z-index: 1;
   padding: 32px 8px 0px 8px;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 24px 16px 0px 16px;
+  }
 `
 
 export const Prices = styled.div`

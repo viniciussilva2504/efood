@@ -9,6 +9,11 @@ export const Imagem = styled.div`
   align-items: center;
   padding: 0 32px;
   position: relative;
+
+  @media (max-width: 768px) {
+    height: 120px;
+    padding: 0 16px;
+  }
 `
 
 export const Text = styled.h3`
@@ -17,6 +22,11 @@ export const Text = styled.h3`
   color: ${cores.rosa};
   position: absolute;
   left: 32px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    left: 16px;
+  }
 `
 
 export const Banner = styled.div`
@@ -25,6 +35,10 @@ export const Banner = styled.div`
   color: ${cores.branco};
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 `
 
 export const TextBanner = styled.p`
@@ -32,12 +46,24 @@ export const TextBanner = styled.p`
   font-size: 32px;
   font-weight: 100;
   padding-bottom: 152px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    padding-top: 16px;
+    padding-bottom: 80px;
+  }
 `
 
 export const RestaurantName = styled.p`
   font-size: 32px;
   font-weight: 900;
   width: 672px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    width: 100%;
+    max-width: calc(100% - 32px);
+  }
 `
 export const Cart = styled.h3`
   cursor: pointer;
@@ -49,6 +75,11 @@ export const Cart = styled.h3`
   &:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    right: 16px;
+  }
 `
 
 export const LogoLink = styled.div`
@@ -59,5 +90,11 @@ export const LogoLink = styled.div`
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 120px;
+    }
   }
 `
