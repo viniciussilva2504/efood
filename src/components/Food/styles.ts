@@ -12,10 +12,19 @@ export const ContainerFood = styled.div`
     padding: 8px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     max-width: 100%;
+    min-width: 0;
     height: auto;
     min-height: 338px;
+  }
+
+  @media (max-width: 600px) {
+    min-height: 220px;
+    height: auto;
+    div {
+      padding: 4px;
+    }
   }
 `
 

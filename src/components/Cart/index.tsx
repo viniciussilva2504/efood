@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Overlay,
@@ -12,6 +13,7 @@ import {
   QuantityControls,
   QuantityButton
 } from './styles'
+
 import Checkout from '../Checkout'
 import type { RootReducer } from '../../store'
 import lixeira from '../../assets/images/trash.png'
@@ -23,12 +25,15 @@ import {
   decreaseQuantity 
 } from '../../store/reducers/Cart'
 import { formataPreco } from '../../utils/formatters'
+import { useToast } from '../Toast'
 
 const Cart = () => {
   const { isOpen, items, isOrder } = useSelector(
     (state: RootReducer) => state.cart
   )
   const dispatch = useDispatch()
+
+  const { showToast } = useToast()
 
   const closeCart = () => {
     dispatch(close())
@@ -42,7 +47,7 @@ const Cart = () => {
       dispatch(openOrder())
     } else {
       closeCart()
-      alert('Seu carrinho está vazio')
+      showToast('Seu carrinho está vazio', 'error')
     }
   }
 

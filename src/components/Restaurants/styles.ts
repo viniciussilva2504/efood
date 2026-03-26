@@ -14,6 +14,7 @@ export const ContainerRest = styled.div`
     width: 100%;
     height: 217px;
     object-fit: cover;
+    border-radius: 8px 8px 0 0;
   }
 
   div {
@@ -37,6 +38,21 @@ export const ContainerRest = styled.div`
       width: 15px;
       height: 15px;
       margin: 0 8px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin-bottom: 24px;
+    img {
+      height: 140px;
+    }
+    div {
+      flex-direction: column;
+      align-items: flex-start;
+      h3 {
+        font-size: 16px;
+      }
     }
   }
 `

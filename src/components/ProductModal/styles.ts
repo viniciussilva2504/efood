@@ -11,6 +11,7 @@ export const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1;
+  outline: none;
 
   &.is-visible {
     display: flex;

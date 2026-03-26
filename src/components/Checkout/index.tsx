@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -13,6 +14,12 @@ import {
 } from '../../store/reducers/Cart'
 
 import { usePurchaseMutation } from '../../services/api'
+import { formataPreco } from '../../utils/formatters'
+import { fetchAddressByCep } from '../../services/viaCep'
+
+import { useAuth } from '../../contexts/AuthContext'
+import { saveOrder } from '../../services/supabaseData'
+import { useToast } from '../Toast'
 
 import {
   OrderContainer,
@@ -36,7 +43,9 @@ const Checkout = () => {
   const navigate = useNavigate()
   const { isPayment, items } = useSelector((state: RootState) => state.cart)
   const dispatch = useDispatch()
-  const [purchase, { data, isSuccess, error }] = usePurchaseMutation()
+  const [purchase, purchaseResult] = usePurchaseMutation()
+  const { user } = useAuth()
+  const { showToast } = useToast()
 
   const fecharPagamento = () => dispatch(closePayment())
   const fecharPedido = () => dispatch(closeOrder())
@@ -49,21 +58,37 @@ const Checkout = () => {
     }, 0)
   }
 
-  const formatPrice = (price: number) => {
-    return price.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    })
+  const handleCepBlur = async () => {
+    const cep = formikEntrega.values.cep.replace(/\D/g, '')
+    if (cep.length === 8) {
+      const address = await fetchAddressByCep(cep)
+      if (address) {
+        formikEntrega.setFieldValue('endereco', address.logradouro)
+        formikEntrega.setFieldValue('cidade', `${address.localidade} - ${address.uf}`)
+        if (address.complemento) {
+          formikEntrega.setFieldValue('complemento', address.complemento)
+        }
+      }
+    }
   }
 
   const FinishOrder = () => {
+    // Salvar pedido no Supabase se user estiver logado
+    if (user) {
+      const orderItems = items.map(item => ({
+        nome: item.nome,
+        quantidade: item.quantidade || 1,
+        preco: item.preco
+      }))
+      const address = `${formikEntrega.values.endereco}, ${formikEntrega.values.numero} - ${formikEntrega.values.cidade}`
+      saveOrder(user.id, '', orderItems, getTotalPrice(), address).catch(() => {})
+    }
     // Fechar todos os modais/abas laterais
     fecharPagamento()
     fecharPedido() 
-    dispatch(close()) // Fechar a aba lateral do carrinho
-    // Limpar carrinho
+    dispatch(close())
     limparPedido()
-    // Navegar para home
+    showToast('Pedido realizado com sucesso!', 'success')
     navigate('/')
   }
 
@@ -152,7 +177,8 @@ const Checkout = () => {
     }
   })
 
-  if (error) {
+  if (purchaseResult.error) {
+    showToast('Erro ao realizar o pedido. Tente novamente mais tarde.', 'error')
     return (
       <OrderContainer>
         <OrderTitle>Erro ao realizar o pedido</OrderTitle>
@@ -167,9 +193,9 @@ const Checkout = () => {
 
   return (
     <OrderContainer>
-      {data && isSuccess ? (
+      {purchaseResult.data && purchaseResult.isSuccess ? (
         <>
-          <OrderTitle>Pedido realizado - {data.orderId}</OrderTitle>
+          <OrderTitle>Pedido realizado - {('orderId' in (purchaseResult.data as any) ? (purchaseResult.data as any).orderId : 'N/A')}</OrderTitle>
           <OrderDescription>
             Estamos felizes em informar que seu pedido já está em processo de
             preparação e, em breve, será entregue no endereço fornecido.
@@ -196,7 +222,7 @@ const Checkout = () => {
         <>
           {isPayment ? (
             <form id="paymentForm" onSubmit={formikPagamento.handleSubmit}>
-              <OrderTitle>Pagamento - valor a pagar {formatPrice(getTotalPrice())}</OrderTitle>
+              <OrderTitle>Pagamento - valor a pagar {formataPreco(getTotalPrice())}</OrderTitle>
 
               <OrderRow>
                 <LabelContainer>
@@ -368,7 +394,11 @@ const Checkout = () => {
                     name="cep"
                     value={formikEntrega.values.cep}
                     onChange={formikEntrega.handleChange}
-                    onBlur={formikEntrega.handleBlur}
+                    onBlur={(e) => {
+                      formikEntrega.handleBlur(e)
+                      handleCepBlur()
+                    }}
+                    placeholder="Ex: 01001000"
                   />
                   {formikEntrega.touched.cep && formikEntrega.errors.cep && (
                     <ErrorMessage>{formikEntrega.errors.cep}</ErrorMessage>

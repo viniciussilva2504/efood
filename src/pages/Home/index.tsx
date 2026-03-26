@@ -1,7 +1,13 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
+
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import RestaurantList from '../../components/List'
+import SkeletonLoader from '../../components/SkeletonLoader'
+import { SkeletonList, SkeletonItem } from '../../components/SkeletonLoader/styles'
+import { useEffect, useState } from 'react'
+import { getRestaurants, SupabaseRestaurant } from '../../services/supabaseData'
+
 export type CardapioItem = {
   id: number
   nome: string
@@ -25,41 +31,48 @@ export type Restaurants = {
 }
 
 const Home = () => {
-  const [restaurants, setRestaurants] = useState<Restaurants[]>([])
+  const [restaurants, setRestaurants] = useState<SupabaseRestaurant[] | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-      .then((resposta) => {
-        if (!resposta.ok) {
-          throw new Error(`HTTP error! status: ${resposta.status}`)
-        }
-        return resposta.json()
-      })
-      .then((resposta) => {
-        setRestaurants(resposta)
+    getRestaurants()
+      .then((data) => {
+        setRestaurants(data)
         setLoading(false)
       })
       .catch((err) => {
-        console.error('Erro ao buscar restaurantes:', err)
-        setError(err.message)
+        setError('Erro ao carregar restaurantes')
         setLoading(false)
       })
   }, [])
 
   if (loading) {
-    return <div>Carregando...</div>
+    return (
+      <>
+        <Header />
+        <SkeletonList>
+          {[...Array(6)].map((_, i) => (
+            <SkeletonItem key={i}>
+              <SkeletonLoader width="100%" height="180px" radius="16px" />
+              <SkeletonLoader width="60%" height="24px" />
+              <SkeletonLoader width="80%" height="16px" />
+              <SkeletonLoader width="40%" height="16px" />
+            </SkeletonItem>
+          ))}
+        </SkeletonList>
+        <Footer />
+      </>
+    )
   }
-
-  if (error) {
-    return <div>Erro: {error}</div>
+  if (error || !restaurants) {
+    return <div>Erro ao carregar restaurantes</div>
   }
 
   return (
     <>
       <Header />
-      <RestaurantList restaurants={restaurants} />
+      <RestaurantList restaurants={restaurants as unknown as Restaurants[] || []} />
       <Footer />
     </>
   )

@@ -19,9 +19,14 @@ export const List = styled.ul`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     column-gap: 0;
-    gap: 32px;
-    padding-top: 32px;
-    padding-bottom: 80px;
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 60px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
+    padding: 0 4px 40px 4px;
   }
 `
 export const Modal = styled.div`
@@ -55,6 +60,17 @@ export const ModalContent = styled.div`
   position: relative;
   display: flex;
   z-index: 1;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    padding: 16px;
+    max-width: 95vw;
+  }
+
+  @media (max-width: 600px) {
+    padding: 8px;
+    max-width: 100vw;
+  }
 `
 
 export const BotaoFechar = styled.img`
@@ -69,6 +85,17 @@ export const ImageModal = styled.img`
   height: 280px;
   object-fit: cover;
   margin-right: 24px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    height: 180px;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 600px) {
+    height: 120px;
+  }
 `
 
 export const Title = styled.h2`

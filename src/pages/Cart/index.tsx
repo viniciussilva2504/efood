@@ -28,16 +28,26 @@
     CheckoutButton,
     BackToShopButton
     } from './styles'
+
     import lixeira from '../../assets/images/trash.png'
+    import { useToast } from '../../components/Toast'
 
     const CartPage = () => {
     const { items } = useSelector((state: RootReducer) => state.cart)
     const dispatch = useDispatch()
 
-    const removeItem = (id: number) => dispatch(remove(id))
+    const { showToast } = useToast()
+
+    const removeItem = (id: number) => {
+        dispatch(remove(id))
+        showToast('Item removido do carrinho', 'success')
+    }
     const increaseItemQuantity = (id: number) => dispatch(increaseQuantity(id))
     const decreaseItemQuantity = (id: number) => dispatch(decreaseQuantity(id))
-    const clearCart = () => dispatch(clear())
+    const clearCart = () => {
+        dispatch(clear())
+        showToast('Carrinho limpo', 'success')
+    }
 
     const getTotalPrice = () => {
         return items.reduce((acc, item) => {

@@ -1,39 +1,18 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import type { CardapioItem, Restaurants } from '../../pages/Home'
+import React from 'react'
+import type { CardapioItem } from '../../pages/Home'
 import Food from '../Food'
 import { List } from './styles'
 import { Container } from '../../styles'
 
-export default function FoodList() {
-  const { id } = useParams<{ id: string }>()
-  const [restaurante, setRestaurante] = useState<Restaurants | null>(null)
+type Props = {
+  cardapio: CardapioItem[]
+}
 
-  useEffect(() => {
-    if (id) {
-      fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
-        .then((resposta) => resposta.json())
-        .then((resposta) => {
-          const cardapioCorrigido: CardapioItem[] = resposta.cardapio.map(
-            (item: any) => ({
-              ...item,
-              preco: Number(item.preco)
-            })
-          )
-          setRestaurante({
-            ...resposta,
-            cardapio: cardapioCorrigido
-          } as Restaurants)
-        })
-    }
-  }, [id])
-
-  if (!restaurante?.cardapio) return null
-
+export default function FoodList({ cardapio }: Props) {
   return (
     <Container>
       <List>
-        {restaurante.cardapio.map((item) => (
+        {cardapio.map((item) => (
           <Food
             key={item.id}
             foto={item.foto}

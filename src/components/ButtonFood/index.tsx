@@ -1,3 +1,5 @@
+
+import React from 'react'
 import { Botao } from './styles'
 
 type ButtonProps = {

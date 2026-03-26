@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import ProductModal from '../ProductModal'
 
@@ -25,7 +26,7 @@ export default function Food({
   preco,
   porcao,
   id
-}: FoodProps) {
+}: FoodProps): React.ReactElement {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const limitarDescricao = (descricao: string) => {
@@ -34,11 +35,11 @@ export default function Food({
 
   return (
     <ContainerFood>
-      <ImagemFood src={foto} />
+      <ImagemFood src={foto} alt={`Foto do prato ${nome}`} />
       <div>
         <TitleFood>{nome}</TitleFood>
         <DescriptionFood>{limitarDescricao(descricao)}</DescriptionFood>
-        <StyledButton onClick={() => setModalIsOpen(true)}>
+        <StyledButton onClick={() => setModalIsOpen(true)} aria-label={`Adicionar ${nome} ao carrinho`}>
           Adicionar ao carrinho
         </StyledButton>
       </div>

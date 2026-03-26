@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import fundoImg from '../../assets/images/fundo.png'
 import logo from '../../assets/images/logo.svg'
@@ -29,7 +30,6 @@ export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
   const abreCart = () => dispatch(open())
   const { items } = useSelector((state: RootReducer) => state.cart)
 
-  const { data: restaurante } = useGetRestauranteQuery(id!)
   return (
     <>
       <Imagem style={{ backgroundImage: `url(${fundoImg})` }}>
@@ -43,12 +43,12 @@ export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
       </Imagem>
       <Banner
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(${restaurante?.capa})`
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(${capa})`
         }}
       >
         <Container>
-          <TextBanner>{restaurante?.tipo}</TextBanner>
-          <RestaurantName>{restaurante?.titulo}</RestaurantName>
+          <TextBanner>{tipo}</TextBanner>
+          <RestaurantName>{titulo}</RestaurantName>
         </Container>
       </Banner>
     </>

@@ -10,9 +10,14 @@ export const Imagem = styled.div`
   padding: 0 32px;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     height: 120px;
     padding: 0 16px;
+  }
+
+  @media (max-width: 600px) {
+    height: 80px;
+    padding: 0 4px;
   }
 `
 
@@ -36,8 +41,12 @@ export const Banner = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
-  @media (max-width: 768px) {
-    height: 200px;
+  @media (max-width: 900px) {
+    height: 160px;
+  }
+
+  @media (max-width: 600px) {
+    height: 100px;
   }
 `
 

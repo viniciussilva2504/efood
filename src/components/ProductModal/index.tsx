@@ -1,7 +1,10 @@
+import React from 'react'
+
 import { useDispatch } from 'react-redux'
 import { formataPreco } from '../../utils/formatters'
 import { add } from '../../store/reducers/Cart'
 import type { CardapioItem } from '../../pages/Home'
+import { useToast } from '../Toast'
 
 import closeIcon from '../../assets/images/fechar.png'
 
@@ -29,6 +32,7 @@ const ProductModal = ({
   onClose
 }: Props) => {
   const dispatch = useDispatch()
+  const { showToast } = useToast()
 
   const getDescription = (description: string) => {
     if (description.length > 90) {
@@ -48,6 +52,7 @@ const ProductModal = ({
       quantidade: 1
     }
     dispatch(add(product))
+    showToast('Produto adicionado ao carrinho!', 'success')
     onClose()
   }
 

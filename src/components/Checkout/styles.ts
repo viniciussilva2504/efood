@@ -16,8 +16,15 @@ export const OrderContainer = styled.div`
   padding: 8px 16px 8px 8px;
   overflow-y: scroll;
 
-  @media (max-width: 768px) {
-    width: 70%;
+  @media (max-width: 900px) {
+    width: 90vw;
+    min-width: 0;
+    padding: 8px 4px 8px 4px;
+  }
+
+  @media (max-width: 600px) {
+    width: 100vw;
+    padding: 4px 2px 4px 2px;
   }
 
   &::-webkit-scrollbar {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { ContainerFooter, Logo, ListLogos, TextFooter } from './styles'
 
 const Footer = () => (

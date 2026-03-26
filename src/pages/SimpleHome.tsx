@@ -2,7 +2,14 @@ import React from 'react'
 
 function SimpleHome() {
   const [message, setMessage] = React.useState('Carregando...')
-  const [restaurants, setRestaurants] = React.useState<any[]>([])
+  const [restaurants, setRestaurants] = React.useState<{
+    id: number
+    titulo: string
+    capa: string
+    descricao: string
+    avaliacao: number
+    tipo: string
+  }[]>([])
 
   React.useEffect(() => {
     setMessage('Buscando restaurantes...')
@@ -19,8 +26,17 @@ function SimpleHome() {
       })
       .then(data => {
         clearTimeout(timeout)
-        setRestaurants(data || [])
-        setMessage(`✅ Sucesso! ${data?.length || 0} restaurantes carregados.`)
+        // Map API data to expected shape if needed
+        const mapped = (data || []).map((r: any) => ({
+          id: r.id,
+          titulo: r.titulo,
+          capa: r.capa,
+          descricao: r.descricao || '',
+          avaliacao: r.avaliacao || 0,
+          tipo: r.tipo || ''
+        }))
+        setRestaurants(mapped)
+        setMessage(`✅ Sucesso! ${mapped.length || 0} restaurantes carregados.`)
       })
       .catch(error => {
         clearTimeout(timeout)

@@ -1,7 +1,11 @@
+  import React from 'react'
+  import { useState } from 'react'
   import { useSelector, useDispatch } from 'react-redux'
   import { Imagem, Logo, TextHeader, CartLink } from './styles'
   import { open } from '../../store/reducers/Cart'
   import type { RootReducer } from '../../store'
+  import { useAuth } from '../../contexts/AuthContext'
+  import AuthModal from '../AuthModal'
 
   type HeaderProps = {
     isRestaurantPage?: boolean
@@ -10,6 +14,8 @@
   const Header = ({ isRestaurantPage }: HeaderProps) => {
     const dispatch = useDispatch()
     const { items } = useSelector((state: RootReducer) => state.cart)
+    const { user, signOut } = useAuth()
+    const [showAuth, setShowAuth] = useState(false)
     
     const getTotalItems = () => {
       return items.reduce((acc, item) => acc + (item.quantidade || 1), 0)
@@ -21,17 +27,29 @@
 
     return (
       <Imagem style={{ backgroundImage: `url(/images/fundo.png)` }}>
-        <div 
-          onClick={openCart} 
-          style={{ 
-            position: 'absolute', 
-            top: '40px', 
-            right: '32px', 
+        <div
+          style={{
+            position: 'absolute',
+            top: '40px',
+            right: '32px',
             zIndex: 10,
+            display: 'flex',
+            gap: '12px',
+            alignItems: 'center'
           }}
           className="cart-mobile"
         >
-          <CartLink>
+          {user ? (
+            <>
+              <CartLink style={{ fontSize: '12px' }}>
+                Olá, {user.user_metadata?.name || user.email?.split('@')[0]}
+              </CartLink>
+              <CartLink onClick={() => signOut()}>Sair</CartLink>
+            </>
+          ) : (
+            <CartLink onClick={() => setShowAuth(true)}>Entrar</CartLink>
+          )}
+          <CartLink onClick={openCart}>
             Carrinho ({getTotalItems()})
           </CartLink>
         </div>
@@ -39,6 +57,7 @@
         <TextHeader>
           Viva experiências gastronômicas no conforto da sua casa
         </TextHeader>
+        {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       </Imagem>
     )
   }

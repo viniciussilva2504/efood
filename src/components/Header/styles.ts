@@ -12,10 +12,16 @@ export const Imagem = styled.div`
   position: relative;
   padding: 0 16px;
 
-  @media (max-width: 768px) {
-    height: 320px;
-    margin-bottom: 40px;
-    padding: 0 12px;
+  @media (max-width: 900px) {
+    height: 260px;
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+
+  @media (max-width: 600px) {
+    height: 180px;
+    margin-bottom: 16px;
+    padding: 0 4px;
   }
 `
 
@@ -37,10 +43,16 @@ export const TextHeader = styled.p`
   max-width: 550px;
   text-align: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     font-size: 24px;
-    margin-top: 40px;
+    margin-top: 60px;
     max-width: 320px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+    margin-top: 32px;
+    max-width: 90vw;
     line-height: 120%;
   }
 `

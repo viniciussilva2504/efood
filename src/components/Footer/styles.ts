@@ -10,9 +10,14 @@ export const Logo = styled.img`
   margin: 0 auto;
   padding-top: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     max-width: 125px;
     padding-top: 32px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 90px;
+    padding-top: 16px;
   }
 `
 
@@ -37,11 +42,16 @@ export const TextFooter = styled.p`
   padding-top: 80px;
   padding-bottom: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     width: 90%;
     max-width: 320px;
-    padding-top: 60px;
-    padding-bottom: 32px;
+    padding-top: 40px;
+    padding-bottom: 24px;
+  }
+
+  @media (max-width: 600px) {
     font-size: 9px;
+    padding-top: 16px;
+    padding-bottom: 8px;
   }
 `

@@ -16,7 +16,7 @@ const api = createApi({
       query: (id) => `/restaurantes/${id}`
     }),
 
-    purchase: builder.mutation<any, Checkout>({
+    purchase: builder.mutation<unknown, Checkout>({
       query: (body) => ({
         url: 'checkout',
         method: 'POST',
