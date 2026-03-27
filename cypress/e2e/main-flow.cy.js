@@ -6,7 +6,7 @@ describe('Fluxo principal do efood', () => {
     cy.contains('Restaurantes').should('exist')
     cy.get('table').should('exist')
     // Clica no primeiro restaurante (ajuste o seletor conforme necessário)
-    cy.get('button').contains('Adicionar Item').first().click({force: true})
+    cy.get('button').contains('Adicionar Item').first().click({ force: true })
     cy.contains('Cardápio').should('exist')
   })
 })
