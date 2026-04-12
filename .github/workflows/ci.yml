@@ -9,25 +9,29 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    env:
+      REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+      REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+
     steps:
-      - name: Checkout código
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Instalar Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Instalar dependências
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Rodar testes unitários
+      - name: Run unit tests
         run: npm test -- --watchAll=false
 
-      - name: Rodar testes E2E (Cypress)
-        run: |
-          npx cypress install
-          npm run cy:run
+      - name: Run E2E tests (Cypress)
+        run: npm run cy:ci
 
-      - name: Build de produção
+      - name: Production build
         run: npm run build
