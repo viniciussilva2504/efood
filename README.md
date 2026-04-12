@@ -1,117 +1,105 @@
-# 🍔 eFood — Plataforma de Delivery de Restaurantes
+# eFood — Restaurant Delivery Platform
 
 ![React](https://img.shields.io/badge/React-19.1-61DAFB?style=flat-square&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.9-764ABC?style=flat-square&logo=redux&logoColor=white)
 ![Styled Components](https://img.shields.io/badge/Styled_Components-6.1-DB7093?style=flat-square&logo=styled-components&logoColor=white)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-Auth%20%2B%20DB-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
 
-Aplicação front-end de delivery que permite explorar restaurantes, visualizar cardápios detalhados, adicionar itens ao carrinho e finalizar pedidos — com autenticação via Supabase, avaliações de clientes, favoritos, autocomplete de endereço via ViaCEP e geolocalização para cálculo de distância.
+A front-end restaurant delivery application where users can browse restaurants, view detailed menus, add items to cart, and complete orders. Features authentication via Supabase, customer reviews, favorites, address autocomplete via ViaCEP, and geolocation-based distance calculation.
 
-## 🚀 Demo ao Vivo
+## Screenshots
 
-**[efood-parte-2.vercel.app](https://efood-parte-2.vercel.app)**
-
-## 📸 Screenshots
-
-| Home — Lista de Restaurantes | Perfil — Cardápio do Restaurante | Modal / Checkout |
+| Home | Restaurant Profile | Checkout |
 |:---:|:---:|:---:|
-| ![Home](docs/screenshot-home.png) | ![Perfil](docs/screenshot-perfil.png) | ![Checkout](docs/screenshot-checkout.png) |
+| ![Home](docs/screenshot-home.png) | ![Profile](docs/screenshot-perfil.png) | ![Checkout](docs/screenshot-checkout.png) |
 
-## 🛠️ Stack & Tecnologias
+## Tech Stack
 
-| Categoria | Tecnologia |
+| Category | Technology |
 |---|---|
 | **UI** | React 19, Styled Components |
-| **Linguagem** | TypeScript |
-| **Estado Global** | Redux Toolkit (slices + RTK Query) |
-| **Roteamento** | React Router DOM v7 |
-| **Formulários** | Formik + Yup (validação) |
-| **API** | RTK Query com fetchBaseQuery |
+| **Language** | TypeScript |
+| **State Management** | Redux Toolkit (slices + RTK Query) |
+| **Routing** | React Router DOM v7 |
+| **Forms** | Formik + Yup |
+| **API Layer** | RTK Query with fetchBaseQuery |
 | **Backend** | Supabase (Auth, PostgreSQL, Storage) |
-| **APIs Públicas** | ViaCEP (autocomplete de endereço), Geolocation API |
-| **Deploy** | Vercel |
+| **External APIs** | ViaCEP (address autocomplete), Geolocation API |
 
-## ✨ Funcionalidades
+## Features
 
-- **Listagem de restaurantes** — página principal com cards de restaurantes (tipo de cozinha, avaliação, destaque)
-- **Cardápio detalhado** — página de perfil do restaurante com modal de produto (foto, descrição, porção, preço)
-- **Carrinho de compras** — adicionar/remover itens com estado gerido via Redux Toolkit
-- **Checkout completo** — fluxo em etapas: dados de entrega → dados de pagamento → confirmação do pedido
-- **Validação de formulários** — validação em tempo real com Formik e Yup
-- **Integração com API REST** — consumo de endpoints para listagem, detalhe e finalização de compra via RTK Query
-- **Layout responsivo** — interface adaptada para diferentes tamanhos de ecrã
+- **Restaurant listing** — home page with restaurant cards displaying cuisine type, rating, and featured highlights
+- **Detailed menu** — restaurant profile page with product modals (photo, description, portion size, price)
+- **Shopping cart** — add/remove items with state managed via Redux Toolkit
+- **Full checkout flow** — multi-step process: delivery details → payment details → order confirmation
+- **Form validation** — real-time validation with Formik and Yup
+- **REST API integration** — data fetching for listing, details, and purchase via RTK Query
+- **Responsive layout** — interface adapted for desktop, tablet, and mobile screens
+- **Supabase Auth** — sign in/sign up with email and password, persistent sessions
+- **Favorites** — mark/unmark favorite restaurants (stored in Supabase)
+- **Customer reviews** — rating and comment system per restaurant
+- **Order history** — completed orders are saved to the user's database record
+- **ViaCEP integration** — address autocomplete at checkout (auto-fills street, city, and state from ZIP code)
+- **Geolocation** — calculates and displays distance from user to each restaurant using the Geolocation API and Haversine formula
 
-### Integrações
+## Getting Started
 
-- **Supabase Auth** — login/registo com email e senha, sessões persistentes
-- **Favoritos** — marcar/desmarcar restaurantes favoritos (Supabase PostgreSQL)
-- **Avaliações de clientes** — sistema de reviews com nota e comentário por restaurante
-- **Histórico de pedidos** — pedidos concluídos são guardados na base de dados do utilizador
-- **ViaCEP** — autocomplete de endereço no checkout (preenche rua, cidade e UF automaticamente ao digitar o CEP)
-- **Geolocalização** — calcula e exibe distância do utilizador a cada restaurante usando Geolocation API + fórmula Haversine
-
-## ⚙️ Como Executar Localmente
-
-**Pré-requisitos:** Node.js 16+ e npm
+**Prerequisites:** Node.js 16+ and npm
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/viniciussilva2504/efood.git
-
-# Entre na pasta do projeto
 cd efood
 
-# Instale as dependências
+# Install dependencies
 npm install
 
-# Configure as variáveis de ambiente (ver .env.example)
+# Set up environment variables
 cp .env.example .env
-# Preencha REACT_APP_SUPABASE_URL e REACT_APP_SUPABASE_ANON_KEY
+# Fill in REACT_APP_SUPABASE_URL and REACT_APP_SUPABASE_ANON_KEY
 
-# Inicie o servidor de desenvolvimento
+# Start the development server
 npm start
 ```
 
-A aplicação estará disponível em `http://localhost:3000`.
+The application will be available at `http://localhost:3000`.
 
-## 📁 Estrutura do Projeto
+## Project Structure
 
 ```
 src/
-├── components/       # Componentes reutilizáveis (Cart, Checkout, AuthModal, ReviewList, etc.)
+├── components/       # Reusable UI components (Cart, Checkout, AuthModal, ReviewList, etc.)
 ├── contexts/         # React Contexts (AuthContext, CartContext)
 ├── hooks/            # Custom hooks (useGeolocation)
-├── pages/            # Páginas da aplicação (Home, Perfil)
-├── store/            # Redux store e reducers (Cart slice)
-├── services/         # APIs (RTK Query, Supabase, ViaCEP)
-├── models/           # Tipagem TypeScript (Cardapio, Checkout)
-├── styles/           # Estilos globais
-├── utils/            # Funções utilitárias (formatters)
-└── routes.tsx        # Configuração de rotas
+├── pages/            # Application pages (Home, Perfil, Admin)
+├── store/            # Redux store and reducers (Cart slice)
+├── services/         # API services (RTK Query, Supabase, ViaCEP)
+├── models/           # TypeScript type definitions (Cardapio, Checkout)
+├── styles/           # Global styles
+├── utils/            # Utility functions (formatters)
+└── routes.tsx        # Route configuration
 ```
 
-## 📌 Scripts Disponíveis
+## Available Scripts
 
-| Comando | Descrição |
+| Command | Description |
 |---|---|
-| `npm start` | Inicia o servidor de desenvolvimento |
-| `npm test` | Executa os testes |
-| `npm run build` | Gera o build de produção |
+| `npm start` | Start the development server |
+| `npm test` | Run tests |
+| `npm run build` | Create a production build |
 
-## 🗺️ Roadmap de Evolução
+## Roadmap
 
-- [x] Adicionar **autenticação** com Supabase (login, registo, sessões)
-- [x] Integrar **ViaCEP** para autocomplete de endereço no checkout
-- [x] Implementar **geolocalização** com cálculo de distância
-- [x] Sistema de **avaliações** e **favoritos** com Supabase
-- [ ] Migrar para **Next.js** (App Router + SSR) para melhor SEO e performance
-- [ ] Implementar **testes E2E com Cypress** para fluxo completo de checkout
-- [ ] Adicionar **skeleton loaders** para melhor UX durante carregamento
-- [ ] Implementar **PWA** com service worker para uso offline
+- [x] Authentication with Supabase (sign in, sign up, sessions)
+- [x] ViaCEP integration for address autocomplete at checkout
+- [x] Geolocation with distance calculation
+- [x] Reviews and favorites system with Supabase
+- [ ] Migrate to Next.js (App Router + SSR) for better SEO and performance
+- [ ] E2E tests with Cypress for complete checkout flow
+- [ ] PWA with service worker for offline support
 
-## 🧑‍💻 Autor
+## Author
 
 **Vinicius Silva** — Frontend Developer · React + TypeScript
 
