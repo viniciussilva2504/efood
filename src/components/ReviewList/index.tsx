@@ -108,7 +108,7 @@ type Props = {
   restaurantId: number
 }
 
-const ReviewList = ({ restaurantId }: Props) => {
+const ReviewList = ({ restaurantId }: Props): React.JSX.Element => {
   const { user } = useAuth()
   const [reviews, setReviews] = useState<Review[]>([])
   const [rating, setRating] = useState(5)

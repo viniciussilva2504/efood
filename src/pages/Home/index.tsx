@@ -30,7 +30,7 @@ export type Restaurants = {
   cardapio: CardapioItem[]
 }
 
-const Home = () => {
+const Home = (): React.JSX.Element => {
   const [restaurants, setRestaurants] = useState<SupabaseRestaurant[] | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

@@ -2,7 +2,7 @@
 import { supabase } from './supabase'
 import { mockRestaurants } from './mockData'
 
-export const getRestaurantById = async (id: number) => {
+export const getRestaurantById = async (id: number): Promise<SupabaseRestaurant> => {
   try {
     const { data, error } = await supabase
       .from('restaurants')
@@ -59,7 +59,7 @@ export const getRestaurants = async (): Promise<SupabaseRestaurant[]> => {
 
 // ==================== FAVORITOS ====================
 
-export const getFavorites = async (userId: string) => {
+export const getFavorites = async (userId: string): Promise<number[]> => {
   const { data, error } = await supabase
     .from('favorites')
     .select('restaurant_id')
@@ -69,7 +69,7 @@ export const getFavorites = async (userId: string) => {
   return data.map(f => f.restaurant_id)
 }
 
-export const toggleFavorite = async (userId: string, restaurantId: number) => {
+export const toggleFavorite = async (userId: string, restaurantId: number): Promise<boolean> => {
   const { data: existing } = await supabase
     .from('favorites')
     .select('id')
@@ -116,7 +116,7 @@ export const addReview = async (
   restaurantId: number,
   rating: number,
   comment: string
-) => {
+): Promise<Review> => {
   const { data, error } = await supabase
     .from('reviews')
     .insert({
@@ -163,7 +163,7 @@ export const saveOrder = async (
   items: { nome: string; quantidade: number; preco: number }[],
   total: number,
   deliveryAddress: string
-) => {
+): Promise<void> => {
   const { error } = await supabase
     .from('order_history')
     .insert({
@@ -179,22 +179,22 @@ export const saveOrder = async (
 
 // ==================== ADMIN ====================
 
-export const deleteRestaurant = async (id: number) => {
+export const deleteRestaurant = async (id: number): Promise<void> => {
   const { error } = await supabase.from('restaurants').delete().eq('id', id)
   if (error) throw error
 }
 
-export const insertRestaurant = async (data: Partial<SupabaseRestaurant>) => {
+export const insertRestaurant = async (data: Partial<SupabaseRestaurant>): Promise<void> => {
   const { error } = await supabase.from('restaurants').insert(data)
   if (error) throw error
 }
 
-export const updateRestaurant = async (id: number, data: Partial<SupabaseRestaurant>) => {
+export const updateRestaurant = async (id: number, data: Partial<SupabaseRestaurant>): Promise<void> => {
   const { error } = await supabase.from('restaurants').update(data).eq('id', id)
   if (error) throw error
 }
 
-export const updateCardapio = async (restaurantId: number, cardapio: CardapioItem[]) => {
+export const updateCardapio = async (restaurantId: number, cardapio: CardapioItem[]): Promise<void> => {
   const { error } = await supabase.from('restaurants').update({ cardapio }).eq('id', restaurantId)
   if (error) throw error
 }

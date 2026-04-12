@@ -39,7 +39,7 @@ type PagamentoFormData = {
   dueYear: string
 }
 
-const Checkout = () => {
+const Checkout = (): React.JSX.Element => {
   const navigate = useNavigate()
   const { isPayment, items } = useSelector((state: RootState) => state.cart)
   const dispatch = useDispatch()

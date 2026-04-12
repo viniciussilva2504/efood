@@ -17,7 +17,7 @@ type RestaurantFormProps = {
   onCancel?: () => void
 }
 
-export default function RestaurantForm({ onSave, initialData, onCancel }: RestaurantFormProps) {
+export default function RestaurantForm({ onSave, initialData, onCancel }: RestaurantFormProps): React.JSX.Element {
   const [form, setForm] = useState<RestaurantFormData>(
     initialData || {
       titulo: '',
