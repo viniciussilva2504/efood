@@ -16,8 +16,11 @@ export const Imagem = styled.div`
   }
 
   @media (max-width: 600px) {
-    height: 80px;
-    padding: 0 4px;
+    height: auto;
+    min-height: 80px;
+    flex-direction: column;
+    padding: 12px 8px;
+    gap: 4px;
   }
 `
 
@@ -31,6 +34,12 @@ export const Text = styled.h3`
   @media (max-width: 768px) {
     font-size: 16px;
     left: 16px;
+  }
+
+  @media (max-width: 600px) {
+    position: static;
+    order: 2;
+    font-size: 14px;
   }
 `
 
@@ -89,6 +98,12 @@ export const Cart = styled.h3`
     font-size: 16px;
     right: 16px;
   }
+
+  @media (max-width: 600px) {
+    position: static;
+    order: 3;
+    font-size: 14px;
+  }
 `
 
 export const LogoLink = styled.div`
@@ -105,5 +120,9 @@ export const LogoLink = styled.div`
     img {
       max-width: 120px;
     }
+  }
+
+  @media (max-width: 600px) {
+    order: 1;
   }
 `

@@ -5,54 +5,25 @@ export const ContainerRest = styled.div`
   width: 472px;
   height: auto;
   border: 1px solid ${cores.rosa};
+  border-radius: 8px;
+  overflow: hidden;
   background-color: ${cores.branco};
   color: ${cores.rosa};
   margin-bottom: 48px;
   position: relative;
 
-  img{
+  > img {
     width: 100%;
     height: 217px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
   }
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h3 {
-      margin-top: 8px;
-      margin-bottom: 16px;
-      margin-left: 8px;
-    }
-
-    span {
-      font-weight: bold;
-      margin-top: 8px;
-      margin-bottomL 16px;
-    }
-
-    img {
-      width: 15px;
-      height: 15px;
-      margin: 0 8px;
-    }
-  }
-
   @media (max-width: 600px) {
     width: 100%;
     margin-bottom: 24px;
-    img {
+    > img {
       height: 140px;
-    }
-    div {
-      flex-direction: column;
-      align-items: flex-start;
-      h3 {
-        font-size: 16px;
-      }
     }
   }
 `
@@ -72,6 +43,44 @@ export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+`
+
+export const TitleRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+
+  h3 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  span {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 15px;
+      height: 15px;
+      margin-left: 4px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    h3 {
+      font-size: 16px;
+    }
+  }
+`
+
+export const ActionsRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 export const StyledButton = styled.button`
   width: 82px;

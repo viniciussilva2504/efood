@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContainerRest, Description, Infos, StyledButton } from './styles'
+import { ContainerRest, Description, Infos, TitleRow, ActionsRow, StyledButton } from './styles'
 import estrelaImg from '../../assets/images/estrela.png'
 import Tag from '../Tag'
 import FavoriteButton from '../FavoriteButton'
@@ -42,25 +42,25 @@ const Restaurant = ({
           </Tag>
         ))}
       </Infos>
-      <div>
+      <TitleRow>
         <h3>{title}</h3>
         <span>
           {classification}
           <img src={estrelaImg} alt="Classificação" />
         </span>
-      </div>
+      </TitleRow>
       {distance !== null && (
         <p style={{ fontSize: '12px', color: '#999', margin: '0 8px 8px', fontStyle: 'italic' }}>
           📍 {distance} km de você
         </p>
       )}
       <Description>{description}</Description>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <ActionsRow>
         <Link to={`/perfil/${id}`}>
           <StyledButton type="button">Saiba mais</StyledButton>
         </Link>
         <FavoriteButton restaurantId={id} aria-label="Marcar como favorito" />
-      </div>
+      </ActionsRow>
     </ContainerRest>
   )
 }

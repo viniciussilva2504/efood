@@ -50,7 +50,8 @@
             <CartLink onClick={() => setShowAuth(true)}>Entrar</CartLink>
           )}
           <CartLink onClick={openCart}>
-            Carrinho ({getTotalItems()})
+            <span className="cart-full">Carrinho ({getTotalItems()})</span>
+            <span className="cart-short">Car. ({getTotalItems()})</span>
           </CartLink>
         </div>
         <Logo src="/images/logo.svg" alt="efood" />

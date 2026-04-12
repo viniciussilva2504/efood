@@ -22,6 +22,12 @@ export const Imagem = styled.div`
     height: 180px;
     margin-bottom: 16px;
     padding: 0 4px;
+
+    .cart-mobile {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      width: auto;
+    }
   }
 `
 
@@ -67,8 +73,25 @@ export const CartLink = styled.div`
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.3s;
+  text-align: center;
+
+  .cart-short {
+    display: none;
+  }
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+
+    .cart-full {
+      display: none;
+    }
+
+    .cart-short {
+      display: inline;
+    }
   }
 `

@@ -1,14 +1,22 @@
 // Buscar restaurante por id
 import { supabase } from './supabase'
+import { mockRestaurants } from './mockData'
 
 export const getRestaurantById = async (id: number) => {
-  const { data, error } = await supabase
-    .from('restaurants')
-    .select('*')
-    .eq('id', id)
-    .single()
-  if (error) throw error
-  return data as SupabaseRestaurant
+  try {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .eq('id', id)
+      .single()
+    if (error) throw error
+    return data as SupabaseRestaurant
+  } catch {
+    console.warn('Supabase indisponível, usando dados locais para restaurante', id)
+    const mock = mockRestaurants.find((r) => r.id === id)
+    if (!mock) throw new Error(`Restaurante ${id} não encontrado`)
+    return mock
+  }
 }
 // ==================== RESTAURANTES (SUPABASE) ====================
 
@@ -36,12 +44,17 @@ export type SupabaseRestaurant = {
 }
 
 export const getRestaurants = async (): Promise<SupabaseRestaurant[]> => {
-  const { data, error } = await supabase
-    .from('restaurants')
-    .select('*')
-    .order('id', { ascending: true })
-  if (error) throw error
-  return data as SupabaseRestaurant[]
+  try {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .order('id', { ascending: true })
+    if (error) throw error
+    return data as SupabaseRestaurant[]
+  } catch {
+    console.warn('Supabase indisponível, usando dados locais')
+    return mockRestaurants
+  }
 }
 
 // ==================== FAVORITOS ====================
@@ -181,7 +194,7 @@ export const updateRestaurant = async (id: number, data: Partial<SupabaseRestaur
   if (error) throw error
 }
 
-export const updateCardapio = async (restaurantId: number, cardapio: any[]) => {
+export const updateCardapio = async (restaurantId: number, cardapio: CardapioItem[]) => {
   const { error } = await supabase.from('restaurants').update({ cardapio }).eq('id', restaurantId)
   if (error) throw error
 }

@@ -81,7 +81,7 @@ const Checkout = () => {
         preco: item.preco
       }))
       const address = `${formikEntrega.values.endereco}, ${formikEntrega.values.numero} - ${formikEntrega.values.cidade}`
-      saveOrder(user.id, '', orderItems, getTotalPrice(), address).catch(() => {})
+      saveOrder(user.id, '', orderItems, getTotalPrice(), address).catch(() => { /* ignore */ })
     }
     // Fechar todos os modais/abas laterais
     fecharPagamento()
@@ -195,7 +195,7 @@ const Checkout = () => {
     <OrderContainer>
       {purchaseResult.data && purchaseResult.isSuccess ? (
         <>
-          <OrderTitle>Pedido realizado - {('orderId' in (purchaseResult.data as any) ? (purchaseResult.data as any).orderId : 'N/A')}</OrderTitle>
+          <OrderTitle>Pedido realizado - {('orderId' in (purchaseResult.data as Record<string, unknown>) ? (purchaseResult.data as Record<string, unknown>).orderId as string : 'N/A')}</OrderTitle>
           <OrderDescription>
             Estamos felizes em informar que seu pedido já está em processo de
             preparação e, em breve, será entregue no endereço fornecido.

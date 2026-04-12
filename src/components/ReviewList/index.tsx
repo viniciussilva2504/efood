@@ -116,7 +116,7 @@ const ReviewList = ({ restaurantId }: Props) => {
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
-    getReviews(restaurantId).then(setReviews).catch(() => {})
+    getReviews(restaurantId).then(setReviews).catch(() => { /* ignore */ })
   }, [restaurantId])
 
   const handleSubmit = async (e: React.FormEvent) => {
