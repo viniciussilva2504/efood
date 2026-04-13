@@ -45,7 +45,7 @@ export const TextHeader = styled.p`
   font-size: 36px;
   line-height: 100%;
   color: ${cores.rosa};
-  margin-top: 138px;
+  margin-top: 92px;
   max-width: 550px;
   text-align: center;
 
