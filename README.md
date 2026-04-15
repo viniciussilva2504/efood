@@ -109,3 +109,5 @@ src/
 ---
 
 > Projeto desenvolvido como parte da formação Full-Stack, demonstrando domínio de React, TypeScript, Redux Toolkit, integração com APIs REST e boas práticas de desenvolvimento front-end.
+
+[🔗 Acesse a versão de produção](https://efood-app.pages.dev)
