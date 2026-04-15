@@ -128,9 +128,9 @@ export default function AdminRestaurants(): React.ReactElement {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>Ações</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -141,23 +141,23 @@ export default function AdminRestaurants(): React.ReactElement {
                 <td>{r.titulo}</td>
                 <td>{r.tipo}</td>
                 <td>
-                  <button style={{ marginRight: 8 }} onClick={() => { setEditData(r); setShowForm(true) }}>Editar</button>
-                  <button style={{ marginRight: 8 }} onClick={() => { setCardapioEditId(r.id); setCardapioEditItem(null); setShowCardapioForm(true) }}>Adicionar Item</button>
-                  <button onClick={() => handleDelete(r.id)}>Remover</button>
+                  <button style={{ marginRight: 8 }} onClick={() => { setEditData(r); setShowForm(true) }}>Edit</button>
+                  <button style={{ marginRight: 8 }} onClick={() => { setCardapioEditId(r.id); setCardapioEditItem(null); setShowCardapioForm(true) }}>Add Item</button>
+                  <button onClick={() => handleDelete(r.id)}>Remove</button>
                 </td>
               </tr>
               {r.cardapio && r.cardapio.length > 0 && (
                 <tr>
                   <td colSpan={4}>
-                    <b>Cardápio:</b>
+                    <b>Menu:</b>
                     <table style={{ width: '100%', margin: '8px 0', background: '#f9f9f9' }}>
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Nome</th>
-                          <th>Preço</th>
-                          <th>Porção</th>
-                          <th>Ações</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Serving</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>

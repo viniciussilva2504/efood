@@ -1,18 +1,18 @@
-test('aplicação: estrutura do projeto está OK', () => {
+test('app: project structure is OK', () => {
   expect(true).toBe(true)
 })
 
-test('aplicação: ambiente de desenvolvimento funciona', () => {
+test('app: development environment works', () => {
   expect(process.env.NODE_ENV).toBeDefined()
 })
 
-test('aplicação: pode importar React', () => {
+test('app: can import React', () => {
   const React = require('react')
   expect(typeof React).toBe('object')
   expect(typeof React.createElement).toBe('function')
 })
 
-test('aplicação: arquivos TypeScript são válidos', () => {
+test('app: TypeScript files are valid', () => {
   expect(typeof require('./App.test.tsx')).toBe('object')
 })
 

@@ -26,7 +26,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Salmon Sashimi',
         descricao: 'Fresh slices of salmon served with special sauce.',
         preco: 45.0,
-        porcao: '8 fatias',
+        porcao: '8 slices',
         foto: 'https://www.manusmenu.com/wp-content/uploads/2016/06/salmon-sashimi-served-with-ponzu-and-wasabi.webp'
       },
       {
@@ -34,7 +34,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Tuna Temaki',
         descricao: 'Crispy temaki filled with fresh tuna and cream cheese.',
         preco: 32.0,
-        porcao: '1 unidade',
+        porcao: '1 unit',
         foto: 'https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/75FBD9DE-88CD-4463-BFD9-D05B5B37003D/Derivates/AE33DABD-BB00-4B63-8AE8-08D08A23FD1E.jpg'
       }
     ]
@@ -56,7 +56,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Margherita Pizza',
         descricao: 'Classic pizza with tomato sauce, mozzarella, and fresh basil.',
         preco: 49.9,
-        porcao: '1 pizza grande',
+        porcao: '1 large pizza',
         foto: 'https://cdn.casaeculinaria.com/wp-content/uploads/2023/11/21140713/Pizza-marguerita-600x400.webp'
       },
       {
@@ -64,7 +64,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Bolognese Lasagna',
         descricao: 'Layers of fresh pasta with bolognese and béchamel sauce.',
         preco: 39.9,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://guiadacozinha.com.br/wp-content/uploads/2014/01/lasanha-bolonhesa-na-pressao.jpg'
       },
       {
@@ -72,7 +72,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Fettuccine Alfredo',
         descricao: 'Fettuccine with special creamy white sauce and parmesan.',
         preco: 42.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://www.foodandwine.com/thmb/2Ag8ydBo-tywQO8h8DUQB4LGAnY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/virginia-fettuccine-alfredo-FT-RECIPE0425-b5f151f29f7d43f9b8630411792cbe8a.jpeg'
       }
     ]
@@ -94,7 +94,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Classic Burger',
         descricao: 'Classic burger with cheddar cheese, lettuce, tomato, and special sauce.',
         preco: 35.9,
-        porcao: '1 unidade',
+        porcao: '1 unit',
         foto: 'https://mccormick.widen.net/content/4fpitkofwn/jpeg/Mission_BBQ_Licensing_KC_Classic_BBQ_Sauce_burger_2026_1620x1020.jpg?crop=true&anchor=0,0&q=80&color=ffffffff&u=xveud9&w=1620&h=1020'
       },
       {
@@ -102,7 +102,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'BBQ Bacon Burger',
         descricao: 'Burger with crispy bacon, caramelized onions, and BBQ sauce.',
         preco: 42.9,
-        porcao: '1 unidade',
+        porcao: '1 unit',
         foto: 'https://scontent.fopo3-2.fna.fbcdn.net/v/t1.6435-9/98000807_100102968385218_2801706277846122496_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=2a1932&_nc_ohc=yrDoliaC2T8Q7kNvwEdgqGs&_nc_oc=AdpudDrP9VDa3Bpc-GClj930cpgr2TKeeAR92_vHznjT1zUsJLtJz-0JsaBvKsxBt14&_nc_zt=23&_nc_ht=scontent.fopo3-2.fna&_nc_gid=YI1nGvPZYnpIcs9avoDVmA&_nc_ss=7a389&oh=00_Af2UuXAab20zbXqUmqo7ui2qP0G54YjW9HOQbprsGkTXAg&oe=6A04BEBE'
       },
       {
@@ -110,7 +110,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Double Smash Burger',
         descricao: 'Two smash patties with cheese, pickles, and mustard.',
         preco: 38.0,
-        porcao: '1 unidade',
+        porcao: '1 unit',
         foto: 'https://www.giallozafferano.com/images/346-34665/smash-burger_1200x800.jpg'
       }
     ]
@@ -132,7 +132,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Complete Feijoada',
         descricao: 'Traditional feijoada with rice, farofa, collard greens, and orange.',
         preco: 45.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://lirp.cdn-website.com/33406c6e/dms3rep/multi/opt/feijoada-1920w.jpg'
       },
       {
@@ -148,7 +148,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Fish Moqueca',
         descricao: 'Bahian moqueca with fresh fish, coconut milk, and dendê oil.',
         preco: 52.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://www.mariareceita.com.br/wp-content/uploads/2026/01/Moqueca-de-Peixe-Facil.jpg'
       }
     ]
@@ -178,7 +178,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Burrito Supreme',
         descricao: 'Burrito filled with meat, rice, beans, guacamole, and sour cream.',
         preco: 36.0,
-        porcao: '1 unidade',
+        porcao: '1 unit',
         foto: 'https://www.mccormick.com/cdn/shop/articles/chili_garlic_recipe_mix_lifestyle_tip_recipe_chili_garlic_steak_burritos_0175_1376x774_6b9d390b-9fa4-4f57-be40-826501258db4.jpg?v=1764948551&width=900'
       },
       {
@@ -186,7 +186,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Nachos with Cheese',
         descricao: 'Crunchy nachos topped with melted cheddar cheese and jalapeños.',
         preco: 25.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://brandsitesplatform-res.cloudinary.com/image/fetch/w_800,c_scale,q_auto:eco,f_auto,fl_lossy,dpr_1.0,e_sharpen:85/https://assets.brandplatform.generalmills.com%2F-%2Fmedia%2Fproject%2Fgmi%2Foldelpaso%2Foldelpaso-us%2Frecipes%2Fgosa9gpqd0a6exkliimkqw_gmi_hi_res_jpeg.jpeg%3F'
       }
     ]
@@ -208,7 +208,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Traditional Yakisoba',
         descricao: 'Oriental noodles with vegetables, chicken, and soy sauce.',
         preco: 32.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://vocegastro.com.br/app/uploads/2021/06/receita-de-yakissoba-de-carne.jpg'
       },
       {
@@ -216,7 +216,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Kung Pao Chicken',
         descricao: 'Diced chicken with peanuts, bell pepper, and sweet and sour sauce.',
         preco: 38.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://vitat.com.br/receitas/images/recipeshandler.jpg?id=509&tipo=r&default=s&ims=fit-in/414x275/filters:quality(60)'
       },
       {
@@ -224,7 +224,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
         nome: 'Chop Suey',
         descricao: 'Oriental noodles with assorted vegetables and special sauce.',
         preco: 29.0,
-        porcao: '1 porção',
+        porcao: '1 serving',
         foto: 'https://emmikochteinfach.de/wp-content/uploads/2025/09/Chop-Suey-Rezept-5.webp'
       }
     ]

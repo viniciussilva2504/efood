@@ -123,18 +123,18 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
 
   const renderConfirmation = () => (
     <FormSection>
-      <SectionTitle>Pedido realizado - #123456</SectionTitle>
+      <SectionTitle>Order placed - #123456</SectionTitle>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
+        We are happy to inform you that your order is already being prepared and will soon be delivered to the provided address.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.
+        Please note that our couriers are not authorized to charge any extra fees.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.
+        Remember the importance of sanitizing your hands after receiving your order, ensuring your safety and well-being during your meal.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>

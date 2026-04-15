@@ -41,17 +41,17 @@ export default function CardapioForm({ onSave, initialData, onCancel }: Cardapio
 
   return (
     <form onSubmit={handleSubmit} style={{ margin: '16px 0', background: '#f8f8f8', padding: 12, borderRadius: 8 }}>
-      <h4>{initialData ? 'Editar Item' : 'Novo Item'}</h4>
+      <h4>{initialData ? 'Edit Item' : 'New Item'}</h4>
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-        <input name="nome" value={form.nome} onChange={handleChange} placeholder="Nome" required style={{ flex: 1 }} />
-        <input name="preco" value={form.preco} onChange={handleChange} placeholder="Preço" type="number" min="0" step="0.01" style={{ width: 100 }} />
-        <input name="porcao" value={form.porcao} onChange={handleChange} placeholder="Porção" style={{ flex: 1 }} />
-        <input name="foto" value={form.foto} onChange={handleChange} placeholder="URL da Foto" style={{ flex: 2 }} />
+        <input name="nome" value={form.nome} onChange={handleChange} placeholder="Name" required style={{ flex: 1 }} />
+        <input name="preco" value={form.preco} onChange={handleChange} placeholder="Price" type="number" min="0" step="0.01" style={{ width: 100 }} />
+        <input name="porcao" value={form.porcao} onChange={handleChange} placeholder="Serving" style={{ flex: 1 }} />
+        <input name="foto" value={form.foto} onChange={handleChange} placeholder="Photo URL" style={{ flex: 2 }} />
       </div>
-      <textarea name="descricao" value={form.descricao} onChange={handleChange} placeholder="Descrição" rows={2} style={{ width: '100%', marginTop: 8 }} />
+      <textarea name="descricao" value={form.descricao} onChange={handleChange} placeholder="Description" rows={2} style={{ width: '100%', marginTop: 8 }} />
       <div style={{ marginTop: 8 }}>
-        <button type="submit">Salvar</button>
-        {onCancel && <button type="button" onClick={onCancel} style={{ marginLeft: 8 }}>Cancelar</button>}
+        <button type="submit">Save</button>
+        {onCancel && <button type="button" onClick={onCancel} style={{ marginLeft: 8 }}>Cancel</button>}
       </div>
     </form>
   )

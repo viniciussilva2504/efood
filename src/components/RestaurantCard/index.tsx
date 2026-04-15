@@ -43,12 +43,12 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
           <RestaurantName>{restaurant.name}</RestaurantName>
           <RestaurantRating>
             {restaurant.rating}
-            <img src="/images/estrela.svg" alt="Classificação" />
+            <img src="/images/estrela.svg" alt="Rating" />
           </RestaurantRating>
         </RestaurantInfo>
         <RestaurantDescription>{restaurant.description}</RestaurantDescription>
         <Link to={`/restaurant/${restaurant.id}`}>
-          <ActionButton>Saiba mais</ActionButton>
+          <ActionButton>Learn more</ActionButton>
         </Link>
       </InfoContainer>
     </Card>

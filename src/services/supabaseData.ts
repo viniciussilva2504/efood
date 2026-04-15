@@ -86,7 +86,7 @@ export const toggleFavorite = async (userId: string, restaurantId: number): Prom
   }
 }
 
-// ==================== AVALIAÇÕES ====================
+// ==================== REVIEWS ====================
 
 export type Review = {
   id: string

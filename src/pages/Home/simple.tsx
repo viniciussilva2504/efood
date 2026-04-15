@@ -59,14 +59,14 @@ const Home = () => {
               }}
             >
               <h3 style={{ color: '#e66', margin: '0 0 10px 0' }}>
-                {restaurant?.titulo || 'Título não encontrado'}
+                {restaurant?.titulo || 'Title not found'}
               </h3>
               <p style={{ color: '#333', margin: '0 0 10px 0' }}>
-                {restaurant?.descricao || 'Descrição não disponível'}
+                {restaurant?.descricao || 'Description not available'}
               </p>
-              <p style={{ color: '#e66', fontWeight: 'bold', margin: '0' }}>
-                ⭐ {restaurant?.avaliacao || 'N/A'} • {restaurant?.tipo || 'Tipo não especificado'}
-              </p>
+                <p style={{ color: '#e66', fontWeight: 'bold', margin: '0' }}>
+                  ⭐ {restaurant?.avaliacao || 'N/A'} • {restaurant?.tipo || 'Type not specified'}
+                </p>
             </div>
           ))}
         </div>

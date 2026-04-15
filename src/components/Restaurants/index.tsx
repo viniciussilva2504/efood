@@ -46,18 +46,18 @@ const Restaurant = ({
         <h3>{title}</h3>
         <span>
           {classification}
-          <img src={estrelaImg} alt="Classificação" />
+          <img src={estrelaImg} alt="Rating" />
         </span>
       </TitleRow>
       {distance !== null && (
         <p style={{ fontSize: '12px', color: '#999', margin: '0 8px 8px', fontStyle: 'italic' }}>
-          📍 {distance} km de você
+          📍 {distance} km from you
         </p>
       )}
       <Description>{description}</Description>
       <ActionsRow>
         <Link to={`/perfil/${id}`}>
-          <StyledButton type="button">Saiba mais</StyledButton>
+          <StyledButton type="button">Learn more</StyledButton>
         </Link>
         <FavoriteButton restaurantId={id} aria-label="Marcar como favorito" />
       </ActionsRow>
