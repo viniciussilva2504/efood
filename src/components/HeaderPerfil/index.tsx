@@ -13,9 +13,8 @@ import {
   LogoLink
 } from './styles'
 import { Container } from '../../styles'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { open } from '../../store/reducers/Cart'
-import { useGetRestauranteQuery } from '../../services/api'
 import type { RootReducer } from '../../store/index'
 
 type Props = {
@@ -25,7 +24,6 @@ type Props = {
 }
 
 export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
-  const { id } = useParams()
   const dispatch = useDispatch()
   const abreCart = () => dispatch(open())
   const { items } = useSelector((state: RootReducer) => state.cart)
