@@ -3,7 +3,6 @@ import { cores } from '../../styles'
 
 export const ContainerRest = styled.div`
   width: 472px;
-  height: auto;
   border: 1px solid ${cores.rosa};
   border-radius: 8px;
   overflow: hidden;
@@ -11,6 +10,8 @@ export const ContainerRest = styled.div`
   color: ${cores.rosa};
   margin-bottom: 48px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   > img {
     width: 100%;
@@ -35,6 +36,7 @@ export const Description = styled.p`
   max-width: 456px;
   margin-left: 8px;
   margin-bottom: 16px;
+  flex-grow: 1;
 `
 
 export const Infos = styled.div`

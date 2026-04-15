@@ -5,6 +5,8 @@ export const Card = styled.div`
   border: 1px solid #e66767;
   position: relative;
   margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
     margin-bottom: 32px;
@@ -42,6 +44,9 @@ export const Tag = styled.span`
 
 export const InfoContainer = styled.div`
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   @media (max-width: 768px) {
     padding: 16px;
@@ -81,6 +86,7 @@ export const RestaurantDescription = styled.p`
   line-height: 22px;
   color: #e66767;
   margin: 0 0 16px 0;
+  flex-grow: 1;
 `
 
 export const ActionButton = styled.button`
