@@ -70,7 +70,7 @@ export const mockRestaurants: SupabaseRestaurant[] = [
       {
         id: 6,
         nome: 'Fettuccine Alfredo',
-        descricao: 'Fettuccine ao molho cremoso com parmesão.',
+        descricao: 'Fettuccine ao molho cremoso com parmesão.             ',
         preco: 42.0,
         porcao: '1 porção',
         foto: 'https://www.foodandwine.com/thmb/2Ag8ydBo-tywQO8h8DUQB4LGAnY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/virginia-fettuccine-alfredo-FT-RECIPE0425-b5f151f29f7d43f9b8630411792cbe8a.jpeg'
