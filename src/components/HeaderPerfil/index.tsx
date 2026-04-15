@@ -31,13 +31,13 @@ export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
   return (
     <>
       <Imagem style={{ backgroundImage: `url(${fundoImg})` }}>
-        <Text>Restaurantes</Text>
+        <Text>Restaurants</Text>
         <LogoLink>
           <Link to="/">
             <img src={logo} alt="Efood" />
           </Link>
         </LogoLink>
-        <Cart onClick={abreCart}>{items.length} produto(s) no carrinho</Cart>
+        <Cart onClick={abreCart}>{items.length} product(s) in cart</Cart>
       </Imagem>
       <Banner
         style={{

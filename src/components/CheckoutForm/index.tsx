@@ -93,10 +93,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
   const renderDeliveryForm = () => (
     <Form onSubmit={handleDeliverySubmit}>
       <FormSection>
-        <SectionTitle>Entrega</SectionTitle>
+        <SectionTitle>Delivery</SectionTitle>
         
         <FormGroup>
-          <Label htmlFor="name">Quem irá receber</Label>
+          <Label htmlFor="name">Recipient name</Label>
           <Input
             type="text"
             id="name"
@@ -107,7 +107,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="address">Endereço</Label>
+          <Label htmlFor="address">Address</Label>
           <Input
             type="text"
             id="address"
@@ -118,7 +118,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="city">Cidade</Label>
+          <Label htmlFor="city">City</Label>
           <Input
             type="text"
             id="city"
@@ -130,7 +130,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
 
         <FormRow>
           <FormGroup>
-            <Label htmlFor="zipCode">CEP</Label>
+            <Label htmlFor="zipCode">ZIP Code</Label>
             <Input
               type="text"
               id="zipCode"
@@ -141,7 +141,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
           </FormGroup>
           
           <FormGroup>
-            <Label htmlFor="number">Número</Label>
+            <Label htmlFor="number">Number</Label>
             <Input
               type="text"
               id="number"
@@ -153,7 +153,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         </FormRow>
 
         <FormGroup>
-          <Label htmlFor="complement">Complemento (opcional)</Label>
+          <Label htmlFor="complement">Complement (optional)</Label>
           <Input
             type="text"
             id="complement"
@@ -163,7 +163,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         </FormGroup>
 
         <ConfirmButton type="submit">
-          Continuar com o pagamento
+          Continue to payment
         </ConfirmButton>
       </FormSection>
     </Form>
@@ -172,10 +172,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
   const renderPaymentForm = () => (
     <Form onSubmit={handlePaymentSubmit}>
       <FormSection>
-        <SectionTitle>Pagamento - Valor a pagar: {formatPrice(state.total)}</SectionTitle>
+        <SectionTitle>Payment - Amount to pay: {formatPrice(state.total)}</SectionTitle>
         
         <FormGroup>
-          <Label htmlFor="cardName">Nome no cartão</Label>
+          <Label htmlFor="cardName">Cardholder name</Label>
           <Input
             type="text"
             id="cardName"
@@ -187,7 +187,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
 
         <FormRow>
           <FormGroup>
-            <Label htmlFor="cardNumber">Número do cartão</Label>
+            <Label htmlFor="cardNumber">Card number</Label>
             <Input
               type="text"
               id="cardNumber"
@@ -213,7 +213,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
 
         <FormRow>
           <FormGroup>
-            <Label htmlFor="expirationMonth">Mês de vencimento</Label>
+            <Label htmlFor="expirationMonth">Expiration month</Label>
             <Input
               type="text"
               id="expirationMonth"
@@ -225,7 +225,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
           </FormGroup>
           
           <FormGroup>
-            <Label htmlFor="expirationYear">Ano de vencimento</Label>
+            <Label htmlFor="expirationYear">Expiration year</Label>
             <Input
               type="text"
               id="expirationYear"
@@ -238,7 +238,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
         </FormRow>
 
         <ConfirmButton type="submit">
-          Finalizar pagamento
+          Finalize payment
         </ConfirmButton>
       </FormSection>
     </Form>
@@ -246,26 +246,26 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
 
   const renderConfirmation = () => (
     <FormSection>
-      <SectionTitle>Pedido realizado - 123456</SectionTitle>
+      <SectionTitle>Order placed - 123456</SectionTitle>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
+        We are happy to inform you that your order is already being prepared and will soon be delivered to the provided address.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.
+        Please note that our couriers are not authorized to charge any extra fees.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.
+        Remember the importance of sanitizing your hands after receiving your order, ensuring your safety and well-being during your meal.
       </p>
       
       <p style={{ color: '#ffebd9', fontSize: '14px', lineHeight: '22px', marginBottom: '24px' }}>
-        Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
+        We hope you enjoy a delicious and pleasant dining experience. Bon appétit!
       </p>
 
       <ConfirmButton onClick={handleFinalizeOrder}>
-        Concluir
+        Finish
       </ConfirmButton>
     </FormSection>
   )
@@ -274,12 +274,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onBack }) => {
     <CheckoutContainer>
       <CheckoutHeader>
         <BackButton onClick={step === 'delivery' ? onBack : () => setStep(step === 'payment' ? 'delivery' : 'payment')}>
-          ← Voltar
+          ← Back
         </BackButton>
         <CheckoutTitle>
-          {step === 'delivery' && 'Dados de Entrega'}
-          {step === 'payment' && 'Pagamento'}
-          {step === 'confirmation' && 'Pedido Confirmado'}
+          {step === 'delivery' && 'Delivery Details'}
+          {step === 'payment' && 'Payment'}
+          {step === 'confirmation' && 'Order Confirmed'}
         </CheckoutTitle>
       </CheckoutHeader>
 

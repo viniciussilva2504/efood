@@ -47,7 +47,7 @@ const Cart = () => {
       dispatch(openOrder())
     } else {
       closeCart()
-      showToast('Seu carrinho está vazio', 'error')
+      showToast('Your cart is empty', 'error')
     }
   }
 
@@ -87,16 +87,16 @@ const Cart = () => {
                 </QuantityControls>
               </div>
               <button type="button" onClick={() => removeItem(item.id)}>
-                <Lixeira src={lixeira} alt="Remover item do carrinho" />
+                <Lixeira src={lixeira} alt="Remove item from cart" />
               </button>
             </CartItem>
           ))}
         </ul>
         <Prices>
-          <p>Valor total:</p>
+          <p>Total price:</p>
           <p>{formataPreco(getTotalPrice())}</p>
         </Prices>
-        <BotaoCart onClick={abrirPedido}>Continuar com a entrega</BotaoCart>
+        <BotaoCart onClick={abrirPedido}>Continue to delivery</BotaoCart>
       </SideBar>
     </CartContainer>
   )

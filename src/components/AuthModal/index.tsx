@@ -126,7 +126,7 @@ const AuthModal = ({ onClose }: Props): React.ReactElement => {
   return (
     <Overlay onClick={onClose}>
       <Modal onClick={(e) => e.stopPropagation()}>
-        <h2>{isLogin ? 'Entrar na sua conta' : 'Criar conta'}</h2>
+        <h2>{isLogin ? 'Sign in to your account' : 'Create account'}</h2>
 
         {error && <ErrorText>{error}</ErrorText>}
 
@@ -134,7 +134,7 @@ const AuthModal = ({ onClose }: Props): React.ReactElement => {
           {!isLogin && (
             <Input
               type="text"
-              placeholder="Nome"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -149,7 +149,7 @@ const AuthModal = ({ onClose }: Props): React.ReactElement => {
           />
           <Input
             type="password"
-            placeholder="Senha"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -157,12 +157,12 @@ const AuthModal = ({ onClose }: Props): React.ReactElement => {
           />
 
           <Button type="submit" disabled={loading}>
-            {loading ? 'Aguarde...' : isLogin ? 'Entrar' : 'Criar conta'}
+            {loading ? 'Please wait...' : isLogin ? 'Sign in' : 'Create account'}
           </Button>
         </form>
 
         <SwitchLink onClick={() => { setIsLogin(!isLogin); setError(null) }}>
-          {isLogin ? 'Não tem conta? Criar agora' : 'Já tem conta? Entrar'}
+          {isLogin ? "Don't have an account? Create now" : 'Already have an account? Sign in'}
         </SwitchLink>
       </Modal>
     </Overlay>

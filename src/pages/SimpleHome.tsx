@@ -1,7 +1,7 @@
 import React from 'react'
 
 function SimpleHome() {
-  const [message, setMessage] = React.useState('Carregando...')
+  const [message, setMessage] = React.useState('Loading...')
   const [restaurants, setRestaurants] = React.useState<{
     id: number
     titulo: string
@@ -12,11 +12,11 @@ function SimpleHome() {
   }[]>([])
 
   React.useEffect(() => {
-    setMessage('Buscando restaurantes...')
+    setMessage('Fetching restaurants...')
     
-    // Timeout para garantir que pelo menos algo apareça
+    // Timeout to ensure something appears
     const timeout = setTimeout(() => {
-      setMessage('⚠️ Timeout - mas pelo menos o React está funcionando!')
+      setMessage('⚠️ Timeout - but at least React is working!')
     }, 5000)
 
     fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
@@ -40,7 +40,7 @@ function SimpleHome() {
       })
       .catch(error => {
         clearTimeout(timeout)
-        setMessage(`❌ Erro: ${error.message}`)
+        setMessage(`❌ Error: ${error.message}`)
         console.error('Fetch error:', error)
       })
 
@@ -72,14 +72,14 @@ function SimpleHome() {
         marginBottom: '20px'
       }}>
         <h2>{message}</h2>
-        <p>Timestamp: {new Date().toLocaleString('pt-BR')}</p>
+        <p>Timestamp: {new Date().toLocaleString('en-US')}</p>
         <p>URL: {window.location.href}</p>
       </div>
 
       {restaurants.length > 0 && (
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <h3 style={{ color: '#e66465' }}>
-            Restaurantes encontrados: {restaurants.length}
+            Restaurants found: {restaurants.length}
           </h3>
           {restaurants.slice(0, 3).map((restaurant, index) => (
             <div key={index} style={{
@@ -90,10 +90,10 @@ function SimpleHome() {
               backgroundColor: '#fff'
             }}>
               <h4 style={{ color: '#e66465', margin: '0 0 10px 0' }}>
-                {restaurant?.titulo || `Restaurante ${index + 1}`}
+                {restaurant?.titulo || `Restaurant ${index + 1}`}
               </h4>
               <p style={{ margin: '0 0 5px 0' }}>
-                {restaurant?.descricao || 'Sem descrição'}
+                {restaurant?.descricao || 'No description'}
               </p>
               <small style={{ color: '#666' }}>
                 ⭐ {restaurant?.avaliacao || 'N/A'} | {restaurant?.tipo || 'N/A'}

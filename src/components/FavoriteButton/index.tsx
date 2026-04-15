@@ -42,7 +42,7 @@ const FavoriteButton = ({ restaurantId }: Props) => {
   if (!user) return null
 
   return (
-    <HeartButton $active={isFavorite} onClick={handleToggle} title="Favoritar restaurante">
+    <HeartButton $active={isFavorite} onClick={handleToggle} title="Favorite restaurant">
       {isFavorite ? '❤️' : '🤍'}
     </HeartButton>
   )

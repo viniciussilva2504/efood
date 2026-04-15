@@ -88,7 +88,7 @@ const Checkout = (): React.JSX.Element => {
     fecharPedido() 
     dispatch(close())
     limparPedido()
-    showToast('Pedido realizado com sucesso!', 'success')
+    showToast('Order placed successfully!', 'success')
     navigate('/')
   }
 
@@ -102,13 +102,13 @@ const Checkout = (): React.JSX.Element => {
       complemento: ''
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('O nome do destinatário é obrigatório'),
-      endereco: Yup.string().required('O endereço é obrigatório'),
-      cidade: Yup.string().required('A cidade é obrigatória'),
+      name: Yup.string().required('Recipient name is required'),
+      endereco: Yup.string().required('Address is required'),
+      cidade: Yup.string().required('City is required'),
       cep: Yup.string()
-        .required('O CEP é obrigatório')
-        .matches(/^[0-9]{8}$/, 'O CEP deve ter 8 dígitos'),
-      numero: Yup.string().required('O número do endereço é obrigatório'),
+        .required('ZIP code is required')
+        .matches(/^[0-9]{8}$/, 'ZIP code must be 8 digits'),
+      numero: Yup.string().required('Address number is required'),
       complemento: Yup.string()
     }),
     onSubmit: () => {
@@ -126,23 +126,23 @@ const Checkout = (): React.JSX.Element => {
     },
     validationSchema: Yup.object({
       cardName: Yup.string()
-        .required('O nome no cartão é obrigatório')
-        .min(3, 'O nome deve ter pelo menos 3 caracteres'),
+        .required('Cardholder name is required')
+        .min(3, 'Name must be at least 3 characters'),
       cardNumber: Yup.string()
-        .required('O número do cartão é obrigatório')
-        .matches(/^[0-9]{16}$/, 'O número do cartão deve ter 16 dígitos'),
+        .required('Card number is required')
+        .matches(/^[0-9]{16}$/, 'Card number must be 16 digits'),
       cvv: Yup.string()
-        .required('O CVV é obrigatório')
-        .matches(/^[0-9]{3}$/, 'O CVV deve ter 3 dígitos'),
+        .required('CVV is required')
+        .matches(/^[0-9]{3}$/, 'CVV must be 3 digits'),
       dueMonth: Yup.string()
-        .required('O mês de vencimento é obrigatório')
+        .required('Expiration month is required')
         .matches(
           /^(0[1-9]|1[0-2])$/,
-          'O mês deve conter dois dígitos, de 01 a 12 (ex: 01, 12)'
+          'Month must be two digits, from 01 to 12 (e.g., 01, 12)'
         ),
       dueYear: Yup.string()
-        .required('O ano de vencimento é obrigatório')
-        .matches(/^[0-9]{4}$/, 'O ano deve estar no formato AAAA')
+        .required('Expiration year is required')
+        .matches(/^[0-9]{4}$/, 'Year must be in YYYY format')
     }),
     onSubmit: (values: PagamentoFormData) => {
       const products = items.map(item => ({
@@ -178,15 +178,14 @@ const Checkout = (): React.JSX.Element => {
   })
 
   if (purchaseResult.error) {
-    showToast('Erro ao realizar o pedido. Tente novamente mais tarde.', 'error')
+    showToast('Error placing order. Please try again later.', 'error')
     return (
       <OrderContainer>
-        <OrderTitle>Erro ao realizar o pedido</OrderTitle>
+        <OrderTitle>Error placing order</OrderTitle>
         <OrderDescription>
-          Ocorreu um erro ao realizar o pedido. Por favor, tente novamente mais
-          tarde.
+          An error occurred while placing your order. Please try again later.
         </OrderDescription>
-        <OrderButton onClick={() => fecharPedido()}>Voltar</OrderButton>
+        <OrderButton onClick={() => fecharPedido()}>Back</OrderButton>
       </OrderContainer>
     )
   }
@@ -195,38 +194,33 @@ const Checkout = (): React.JSX.Element => {
     <OrderContainer>
       {purchaseResult.data && purchaseResult.isSuccess ? (
         <>
-          <OrderTitle>Pedido realizado - {('orderId' in (purchaseResult.data as Record<string, unknown>) ? (purchaseResult.data as Record<string, unknown>).orderId as string : 'N/A')}</OrderTitle>
+          <OrderTitle>Order placed - {('orderId' in (purchaseResult.data as Record<string, unknown>) ? (purchaseResult.data as Record<string, unknown>).orderId as string : 'N/A')}</OrderTitle>
           <OrderDescription>
-            Estamos felizes em informar que seu pedido já está em processo de
-            preparação e, em breve, será entregue no endereço fornecido.
+            We are happy to inform you that your order is already being prepared and will soon be delivered to the provided address.
           </OrderDescription>
           <OrderDescription>
-            Gostaríamos de ressaltar que nossos entregadores não estão
-            autorizados a realizar cobranças extras.
+            Please note that our couriers are not authorized to charge any extra fees.
           </OrderDescription>
           <OrderDescription>
-            Lembre-se da importância de higienizar as mãos após o recebimento do
-            pedido, garantindo assim sua segurança e bem-estar durante a
-            refeição.
+            Remember the importance of sanitizing your hands after receiving your order, ensuring your safety and well-being during your meal.
           </OrderDescription>
           <OrderDescription>
-            Esperamos que desfrute de uma deliciosa e agradável experiência
-            gastronômica. Bom apetite!
+            We hope you enjoy a delicious and pleasant dining experience. Bon appétit!
           </OrderDescription>
 
           <OrderButton className="marginTop" onClick={() => FinishOrder()}>
-            Concluir
+            Finish
           </OrderButton>
         </>
       ) : (
         <>
           {isPayment ? (
             <form id="paymentForm" onSubmit={formikPagamento.handleSubmit}>
-              <OrderTitle>Pagamento - valor a pagar {formataPreco(getTotalPrice())}</OrderTitle>
+              <OrderTitle>Payment - amount to pay {formataPreco(getTotalPrice())}</OrderTitle>
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="cardName">Nome do cartão</label>
+                  <label htmlFor="cardName">Cardholder name</label>
                   <input
                     type="text"
                     id="cardName"
@@ -246,7 +240,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="cardNumber">Número do cartão</label>
+                  <label htmlFor="cardNumber">Card number</label>
                   <input
                     type="text"
                     id="cardNumber"
@@ -282,7 +276,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="dueMonth">Mês de vencimento</label>
+                  <label htmlFor="dueMonth">Expiration month</label>
                   <input
                     type="text"
                     id="dueMonth"
@@ -300,7 +294,7 @@ const Checkout = (): React.JSX.Element => {
                 </LabelContainer>
 
                 <LabelContainer>
-                  <label htmlFor="dueYear">Ano de vencimento</label>
+                  <label htmlFor="dueYear">Expiration year</label>
                   <input
                     type="text"
                     id="dueYear"
@@ -319,20 +313,20 @@ const Checkout = (): React.JSX.Element => {
               </OrderRow>
 
               <OrderButton className="marginTop" type="submit">
-                Finalizar pagamento
+                Finalize payment
               </OrderButton>
 
               <OrderButton type="button" onClick={fecharPagamento}>
-                Voltar para edição de endereço
+                Back to address editing
               </OrderButton>
             </form>
           ) : (
             <form id="deliveryForm" onSubmit={formikEntrega.handleSubmit}>
-              <OrderTitle>Entrega</OrderTitle>
+              <OrderTitle>Delivery</OrderTitle>
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="name">Quem irá receber</label>
+                  <label htmlFor="name">Recipient name</label>
                   <input
                     type="text"
                     id="name"
@@ -349,7 +343,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="endereco">Endereço</label>
+                  <label htmlFor="endereco">Address</label>
                   <input
                     type="text"
                     id="endereco"
@@ -369,7 +363,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="cidade">Cidade</label>
+                  <label htmlFor="cidade">City</label>
                   <input
                     type="text"
                     id="cidade"
@@ -387,7 +381,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="cep">CEP</label>
+                  <label htmlFor="cep">ZIP code</label>
                   <input
                     type="text"
                     id="cep"
@@ -406,7 +400,7 @@ const Checkout = (): React.JSX.Element => {
                 </LabelContainer>
 
                 <LabelContainer>
-                  <label htmlFor="numero">Número</label>
+                  <label htmlFor="numero">Number</label>
                   <input
                     type="text"
                     id="numero"
@@ -424,7 +418,7 @@ const Checkout = (): React.JSX.Element => {
 
               <OrderRow>
                 <LabelContainer>
-                  <label htmlFor="complemento">Complemento (opcional)</label>
+                  <label htmlFor="complemento">Complement (optional)</label>
                   <input
                     type="text"
                     id="complemento"
@@ -437,10 +431,10 @@ const Checkout = (): React.JSX.Element => {
               </OrderRow>
 
               <OrderButton className="marginTop" type="submit">
-                Continuar com pagamento
+                Continue to payment
               </OrderButton>
               <OrderButton type="button" onClick={fecharPedido}>
-                Voltar para o carrinho
+                Back to cart
               </OrderButton>
             </form>
           )}

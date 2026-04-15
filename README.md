@@ -8,6 +8,10 @@
 
 A front-end restaurant delivery application where users can browse restaurants, view detailed menus, add items to cart, and complete orders. Features authentication via Supabase, customer reviews, favorites, address autocomplete via ViaCEP, and geolocation-based distance calculation.
 
+> Projeto desenvolvido como parte da formação Full-Stack, demonstrando domínio de React, TypeScript, Redux Toolkit, integração com APIs REST e boas práticas de desenvolvimento front-end.
+
+[🔗 Acesse a versão de produção](https://efood-app.pages.dev)
+
 ## Screenshots
 
 | Home | Restaurant Profile | Checkout |

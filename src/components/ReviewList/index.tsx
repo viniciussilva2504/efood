@@ -139,12 +139,12 @@ const ReviewList = ({ restaurantId }: Props): React.JSX.Element => {
   const renderStars = (count: number) => '⭐'.repeat(count)
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('pt-BR')
+    return new Date(dateStr).toLocaleDateString('en-US')
   }
 
   return (
     <Container>
-      <Title>Avaliações dos clientes</Title>
+      <Title>Customer Reviews</Title>
 
       {user ? (
         <FormContainer onSubmit={handleSubmit}>
@@ -160,20 +160,20 @@ const ReviewList = ({ restaurantId }: Props): React.JSX.Element => {
             ))}
           </StarSelect>
           <TextArea
-            placeholder="Escreva a sua avaliação..."
+            placeholder="Write your review..."
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
           <SubmitButton type="submit" disabled={submitting || !comment.trim()}>
-            {submitting ? 'Enviando...' : 'Enviar avaliação'}
+            {submitting ? 'Sending...' : 'Submit review'}
           </SubmitButton>
         </FormContainer>
       ) : (
-        <LoginHint>Faça login para deixar uma avaliação</LoginHint>
+        <LoginHint>Log in to leave a review</LoginHint>
       )}
 
       {reviews.length === 0 ? (
-        <p style={{ color: '#999', fontSize: '14px' }}>Ainda sem avaliações</p>
+        <p style={{ color: '#999', fontSize: '14px' }}>No reviews yet</p>
       ) : (
         reviews.map((review) => (
           <ReviewCard key={review.id}>

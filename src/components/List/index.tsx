@@ -14,7 +14,7 @@ const RestaurantList = ({ restaurants }: Props) => {
     const tags: { text: string; size: 'big' | 'small' }[] = []
 
     if (restaurant.destacado) {
-      tags.push({ text: 'Destaque do dia', size: 'big' })
+      tags.push({ text: 'Featured of the day', size: 'big' })
     }
 
     if (restaurant.tipo) {

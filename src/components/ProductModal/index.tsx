@@ -52,23 +52,23 @@ const ProductModal = ({
       quantidade: 1
     }
     dispatch(add(product))
-    showToast('Produto adicionado ao carrinho!', 'success')
+    showToast('Product added to cart!', 'success')
     onClose()
   }
 
   return (
     <S.ModalContainer className={isOpen ? 'is-visible' : ''}>
       <S.ModalContent className="container">
-        <img src={closeIcon} alt="Fechar" onClick={onClose} />
+        <img src={closeIcon} alt="Close" onClick={onClose} />
         <header>
           <img src={photo} alt={name} />
         </header>
         <div>
           <h4>{name}</h4>
           <p>{getDescription(description)}</p>
-          <p>Serve: de {portion}</p>
+          <p>Portion: {portion}</p>
           <S.Button onClick={addToCart}>
-            Adicionar ao carrinho - {formataPreco(price)}
+            Add to cart - {formataPreco(price)}
           </S.Button>
         </div>
       </S.ModalContent>
