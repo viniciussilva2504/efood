@@ -12,8 +12,20 @@
     <title>efood - Restaurantes de qualidade</title>
   </head>
   <body>
-    <noscript>Você precisa habilitar o JavaScript para executar este aplicativo.</noscript>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      window.onerror = function(msg, url, line, col, err) {
+        var d = document.getElementById('root');
+        d.style.cssText = 'padding:32px;font-family:monospace;color:#e66767;background:#fff8f2;min-height:100vh';
+        d.innerHTML = '<h2>Runtime Error</h2><pre>' + msg + '\n\nFile: ' + url + '\nLine: ' + line + ':' + col + '\n\n' + (err && err.stack ? err.stack : '') + '</pre>';
+      };
+      window.addEventListener('unhandledrejection', function(e) {
+        var d = document.getElementById('root');
+        d.style.cssText = 'padding:32px;font-family:monospace;color:#e66767;background:#fff8f2;min-height:100vh';
+        d.innerHTML = '<h2>Unhandled Promise Error</h2><pre>' + (e.reason ? (e.reason.stack || e.reason.message || e.reason) : 'Unknown') + '</pre>';
+      });
+    </script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
