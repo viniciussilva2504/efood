@@ -34,7 +34,7 @@ const Restaurant = ({
 
   return (
     <ContainerRest>
-      <img src={image} alt={`Photo of restaurant ${title}`} />
+      <img src={image} alt={`${title} restaurant`} />
       <Infos>
         {infos.map((info) => (
           <Tag size={info.size} key={info.text}>
