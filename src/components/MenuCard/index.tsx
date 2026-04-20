@@ -16,12 +16,12 @@
 
     return (
         <Card>
-        <MenuImage src={menuItem.foto} alt={`Foto do prato ${menuItem.nome}`} />
+        <MenuImage src={menuItem.foto} alt={`Photo of ${menuItem.nome}`} />
         <MenuInfo>
             <MenuTitle>{menuItem.nome}</MenuTitle>
             <MenuDescription>{menuItem.descricao}</MenuDescription>
             <MenuPrice>{formatPrice(menuItem.preco)}</MenuPrice>
-            <AddButton aria-label={`Adicionar ${menuItem.nome} ao carrinho`}>Adicionar ao carrinho</AddButton>
+            <AddButton aria-label={`Add ${menuItem.nome} to cart`}>Add to cart</AddButton>
         </MenuInfo>
         </Card>
     )

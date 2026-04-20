@@ -36,7 +36,7 @@ function SimpleHome() {
           tipo: r.tipo || ''
         }))
         setRestaurants(mapped)
-        setMessage(`✅ Sucesso! ${mapped.length || 0} restaurantes carregados.`)
+        setMessage(`✅ Success! ${mapped.length || 0} restaurants loaded.`)
       })
       .catch(error => {
         clearTimeout(timeout)
@@ -61,7 +61,7 @@ function SimpleHome() {
         fontSize: '2em',
         marginBottom: '20px'
       }}>
-        🍕 eFood - TESTE ABSOLUTO
+        🍕 eFood - ABSOLUTE TEST
       </h1>
       
       <div style={{

@@ -42,7 +42,7 @@ const Home = (): React.JSX.Element => {
         setLoading(false)
       })
       .catch((err) => {
-        setError('Erro ao carregar restaurantes')
+        setError('Error loading restaurants')
         setLoading(false)
       })
   }, [])

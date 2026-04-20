@@ -8,7 +8,7 @@ export const ContainerRest = styled.div`
   overflow: hidden;
   background-color: ${cores.branco};
   color: ${cores.rosa};
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ export const ContainerRest = styled.div`
 
   @media (max-width: 600px) {
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     > img {
       height: 140px;
     }
@@ -83,6 +83,7 @@ export const ActionsRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 8px 8px;
 `
 export const StyledButton = styled.button`
   width: 82px;
@@ -92,9 +93,17 @@ export const StyledButton = styled.button`
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
-  line-height: 24px; /* 100% of height */
+  line-height: 24px;
   letter-spacing: 0;
   text-align: center;
-  margin: 8px;
+  border-radius: 4px;
   border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #d45555;
+    box-shadow: 0 4px 12px rgba(230, 103, 103, 0.4);
+    transform: translateY(-1px);
+  }
 `

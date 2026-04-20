@@ -22,13 +22,13 @@ export default function AdminRestaurants(): React.ReactElement {
         setLoading(false)
       })
       .catch(() => {
-        setError('Erro ao carregar restaurantes')
+        setError('Error loading restaurants')
         setLoading(false)
       })
   }, [])
 
   const handleDelete = async (id: number) => {
-    if (window.confirm('Tem certeza que deseja remover este restaurante?')) {
+    if (window.confirm('Are you sure you want to remove this restaurant?')) {
       await deleteRestaurant(id)
       setRestaurants((prev) => prev.filter((r) => r.id !== id))
     }
@@ -73,7 +73,7 @@ export default function AdminRestaurants(): React.ReactElement {
         const updated = await getRestaurants()
         setRestaurants(updated)
       } catch (err) {
-        alert('Erro ao salvar cardápio: ' + ((err as Error)?.message || err))
+        alert('Error saving menu: ' + ((err as Error)?.message || err))
       }
       setShowCardapioForm(false)
       setCardapioEditItem(null)
@@ -89,12 +89,12 @@ export default function AdminRestaurants(): React.ReactElement {
     setRestaurants((prev) => prev.map((r) => r.id === restId ? { ...r, cardapio: newCardapio } : r))
   }
 
-  if (loading) return <div>Carregando...</div>
+  if (loading) return <div>Loading...</div>
   if (error) return <div>{error}</div>
 
   return (
     <div style={{ maxWidth: 900, margin: '32px auto', padding: 16 }}>
-      <h2>Restaurantes</h2>
+      <h2>Restaurants</h2>
       {showForm && (
         <RestaurantForm
           onSave={handleSave}
@@ -168,8 +168,8 @@ export default function AdminRestaurants(): React.ReactElement {
                             <td>{item.preco}</td>
                             <td>{item.porcao}</td>
                             <td>
-                              <button style={{ marginRight: 8 }} onClick={() => { setCardapioEditId(r.id); setCardapioEditItem(item); setShowCardapioForm(true) }}>Editar</button>
-                              <button onClick={() => handleCardapioDelete(r.id, item.id)}>Remover</button>
+                              <button style={{ marginRight: 8 }} onClick={() => { setCardapioEditId(r.id); setCardapioEditItem(item); setShowCardapioForm(true) }}>Edit</button>
+                              <button onClick={() => handleCardapioDelete(r.id, item.id)}>Remove</button>
                             </td>
                           </tr>
                         ))}
@@ -182,7 +182,7 @@ export default function AdminRestaurants(): React.ReactElement {
           ))}
         </tbody>
       </table>
-      <button style={{ marginTop: 24 }} onClick={() => { setEditData(null); setShowForm(true) }}>Adicionar Restaurante</button>
+      <button style={{ marginTop: 24 }} onClick={() => { setEditData(null); setShowForm(true) }}>Add Restaurant</button>
     </div>
   )
 }

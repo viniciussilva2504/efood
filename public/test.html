@@ -1,36 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>ABSOLUTE TEST</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            padding: 20px; 
-            background: white;
-        }
-        h1 { color: #e66465; }
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: white;
+      }
+      h1 {
+        color: #e66465;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>🎉 IF YOU SEE THIS, VERCEL WORKS!</h1>
     <p>This is a static test HTML page.</p>
     <p>If this appears, the problem was in React or the configuration.</p>
     <p>Timestamp: <span id="time"></span></p>
-    
+
     <script>
-        document.getElementById('time').textContent = new Date().toLocaleString();
-        
-        // Teste de fetch básico
-        fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-            .then(r => r.json())
-            .then(data => {
-                document.body.innerHTML += '<h2>✅ API FUNCIONA!</h2>';
-                document.body.innerHTML += '<p>Restaurantes encontrados: ' + data.length + '</p>';
-                document.body.innerHTML += '<pre>' + JSON.stringify(data[0], null, 2) + '</pre>';
-            })
-            .catch(err => {
-                document.body.innerHTML += '<h2>❌ API com problema: ' + err.message + '</h2>';
-            });
+      document.getElementById('time').textContent = new Date().toLocaleString()
+
+      // Teste de fetch básico
+      fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
+        .then((r) => r.json())
+        .then((data) => {
+          document.body.innerHTML += '<h2>✅ API FUNCIONA!</h2>'
+          document.body.innerHTML += '<p>Restaurantes encontrados: ' + data.length + '</p>'
+          document.body.innerHTML += '<pre>' + JSON.stringify(data[0], null, 2) + '</pre>'
+        })
+        .catch((err) => {
+          document.body.innerHTML += '<h2>❌ API com problema: ' + err.message + '</h2>'
+        })
     </script>
-</body>
+  </body>
 </html>

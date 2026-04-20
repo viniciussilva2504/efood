@@ -7,9 +7,15 @@ export const ContainerFood = styled.div`
   background-color: ${cores.rosa};
   cursor: pointer;
   height: 338px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   div {
     padding: 8px;
+    width: 100%;
   }
 
   @media (max-width: 900px) {
@@ -35,6 +41,7 @@ export const ImagemFood = styled.img`
   height: 167px;
   object-fit: cover;
   padding: 8px;
+  border-radius: 8px 8px 0 0;
 `
 
 export const TitleFood = styled.h4`
@@ -60,10 +67,12 @@ export const StyledButton = styled.button`
   line-height: 100%;
   letter-spacing: 0;
   text-align: center;
+  border-radius: 4px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 
   border: none;
 

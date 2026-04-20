@@ -34,7 +34,7 @@ const Restaurant = ({
 
   return (
     <ContainerRest>
-      <img src={image} alt={`Foto do restaurante ${title}`} />
+      <img src={image} alt={`Photo of restaurant ${title}`} />
       <Infos>
         {infos.map((info) => (
           <Tag size={info.size} key={info.text}>
@@ -59,7 +59,7 @@ const Restaurant = ({
         <Link to={`/perfil/${id}`}>
           <StyledButton type="button">Learn more</StyledButton>
         </Link>
-        <FavoriteButton restaurantId={id} aria-label="Marcar como favorito" />
+        <FavoriteButton restaurantId={id} aria-label="Mark as favorite" />
       </ActionsRow>
     </ContainerRest>
   )

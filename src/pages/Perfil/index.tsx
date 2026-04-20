@@ -25,7 +25,7 @@ const Perfil = () => {
           setLoading(false)
         })
         .catch(() => {
-          setError('Erro ao carregar restaurante')
+          setError('Error loading restaurant')
           setLoading(false)
         })
     }

@@ -48,6 +48,10 @@ export const TextHeader = styled.p`
   margin-top: 92px;
   max-width: 550px;
   text-align: center;
+  text-shadow:
+    0 0 7px rgba(230, 103, 103, 0.6),
+    0 0 14px rgba(230, 103, 103, 0.4),
+    0 0 28px rgba(230, 103, 103, 0.2);
 
   @media (max-width: 900px) {
     font-size: 24px;

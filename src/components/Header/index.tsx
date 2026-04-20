@@ -42,21 +42,21 @@
           {user ? (
             <>
               <CartLink style={{ fontSize: '12px' }}>
-                Olá, {user.user_metadata?.name || user.email?.split('@')[0]}
+                Hello, {user.user_metadata?.name || user.email?.split('@')[0]}
               </CartLink>
-              <CartLink onClick={() => signOut()}>Sair</CartLink>
+              <CartLink onClick={() => signOut()}>Sign out</CartLink>
             </>
           ) : (
-            <CartLink onClick={() => setShowAuth(true)}>Entrar</CartLink>
+            <CartLink onClick={() => setShowAuth(true)}>Sign in</CartLink>
           )}
           <CartLink onClick={openCart}>
-            <span className="cart-full">Carrinho ({getTotalItems()})</span>
-            <span className="cart-short">Car. ({getTotalItems()})</span>
+            <span className="cart-full">Cart ({getTotalItems()})</span>
+            <span className="cart-short">Cart ({getTotalItems()})</span>
           </CartLink>
         </div>
         <Logo src="/images/logo.svg" alt="efood" />
         <TextHeader>
-          Viva experiências gastronômicas no conforto da sua casa
+          Live gastronomic experiences from the comfort of your home
         </TextHeader>
         {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       </Imagem>

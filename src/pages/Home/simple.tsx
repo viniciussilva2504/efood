@@ -22,7 +22,7 @@ const Home = () => {
   if (loading) {
     return (
       <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#fff', minHeight: '100vh' }}>
-        <h1 style={{ color: '#e66' }}>Carregando restaurantes...</h1>
+        <h1 style={{ color: '#e66' }}>Loading restaurants...</h1>
       </div>
     )
   }
@@ -30,15 +30,15 @@ const Home = () => {
   return (
     <div style={{ padding: '20px', backgroundColor: '#fff', minHeight: '100vh' }}>
       <h1 style={{ textAlign: 'center', color: '#e66', marginBottom: '10px' }}>
-        🍽️ eFood - Restaurantes
+        🍽️ eFood - Restaurants
       </h1>
       <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>
-        Total de restaurantes carregados: {restaurants.length}
+        Total restaurants loaded: {restaurants.length}
       </p>
       
       {restaurants.length === 0 ? (
         <div style={{ textAlign: 'center', color: '#666' }}>
-          <p>Nenhum restaurante encontrado ou erro na API</p>
+          <p>No restaurants found or API error</p>
         </div>
       ) : (
         <div style={{ 

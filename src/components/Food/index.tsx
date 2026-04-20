@@ -35,12 +35,12 @@ export default function Food({
 
   return (
     <ContainerFood>
-      <ImagemFood src={foto} alt={`Foto do prato ${nome}`} />
+      <ImagemFood src={foto} alt={`Photo of ${nome}`} />
       <div>
         <TitleFood>{nome}</TitleFood>
         <DescriptionFood>{limitarDescricao(descricao)}</DescriptionFood>
-        <StyledButton onClick={() => setModalIsOpen(true)} aria-label={`Adicionar ${nome} ao carrinho`}>
-          Adicionar ao carrinho
+        <StyledButton onClick={() => setModalIsOpen(true)} aria-label={`Add ${nome} to cart`}>
+          Add to cart
         </StyledButton>
       </div>
       {modalIsOpen && (

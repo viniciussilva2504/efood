@@ -40,13 +40,13 @@
 
     const removeItem = (id: number) => {
         dispatch(remove(id))
-        showToast('Item removido do carrinho', 'success')
+        showToast('Item removed from cart', 'success')
     }
     const increaseItemQuantity = (id: number) => dispatch(increaseQuantity(id))
     const decreaseItemQuantity = (id: number) => dispatch(decreaseQuantity(id))
     const clearCart = () => {
         dispatch(clear())
-        showToast('Carrinho limpo', 'success')
+        showToast('Cart cleared', 'success')
     }
 
     const getTotalPrice = () => {
@@ -65,10 +65,10 @@
             <Header />
             <CartPageContainer>
             <EmptyCart>
-                <h2>Seu carrinho está vazio</h2>
-                <p>Que tal adicionar alguns deliciosos pratos?</p>
+                <h2>Your cart is empty</h2>
+                <p>How about adding some delicious dishes?</p>
                 <Link to="/">
-                <BackToShopButton>Voltar ao Cardápio</BackToShopButton>
+                <BackToShopButton>Back to Menu</BackToShopButton>
                 </Link>
             </EmptyCart>
             </CartPageContainer>
@@ -82,7 +82,7 @@
         <Header />
         <CartPageContainer>
             <CartContent>
-            <h2>Seu Carrinho ({getTotalItems()} {getTotalItems() === 1 ? 'item' : 'itens'})</h2>
+            <h2>Your Cart ({getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'})</h2>
             
             <div>
                 {items.map((item) => (
@@ -102,7 +102,7 @@
                     </QuantityControls>
                     </ItemInfo>
                     <RemoveButton onClick={() => removeItem(item.id)}>
-                    <img src={lixeira} alt="Remover item" />
+                    <img src={lixeira} alt="Remove item" />
                     </RemoveButton>
                 </CartItem>
                 ))}
@@ -110,7 +110,7 @@
 
             <CartSummary>
                 <TotalPrice>
-                <span>Valor total:</span>
+                <span>Total:</span>
                 <span>{formataPreco(getTotalPrice())}</span>
                 </TotalPrice>
                 
@@ -122,16 +122,16 @@
                     padding: '8px 16px',
                     cursor: 'pointer'
                 }}>
-                    Limpar Carrinho
+                    Clear Cart
                 </button>
                 
                 <CheckoutButton>
-                    Finalizar Pedido
+                    Checkout
                 </CheckoutButton>
                 </div>
                 
                 <Link to="/" style={{ marginTop: '16px', display: 'inline-block' }}>
-                <BackToShopButton>Continuar Comprando</BackToShopButton>
+                <BackToShopButton>Continue Shopping</BackToShopButton>
                 </Link>
             </CartSummary>
             </CartContent>

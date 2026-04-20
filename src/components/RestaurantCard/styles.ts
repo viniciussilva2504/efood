@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const Card = styled.div`
   background-color: #fff;
   border: 1px solid #e66767;
+  border-radius: 8px;
+  overflow: hidden;
   position: relative;
   margin-bottom: 48px;
   display: flex;
@@ -23,6 +25,8 @@ export const RestaurantImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 `
 
 export const TagContainer = styled.div`
@@ -93,10 +97,13 @@ export const ActionButton = styled.button`
   background-color: #e66767;
   color: #ffebd9;
   border: none;
+  border-radius: 4px;
   padding: 4px 6px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  display: block;
+  margin: 0 auto 8px;
   
   &:hover {
     background-color: #d45555;
