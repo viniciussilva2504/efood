@@ -2,9 +2,12 @@
 import { supabase } from './supabase'
 import { mockRestaurants } from './mockData'
 
+const db = supabase!
+
 export const getRestaurantById = async (id: number): Promise<SupabaseRestaurant> => {
   try {
-    const { data, error } = await supabase
+    if (!supabase) throw new Error('offline')
+    const { data, error } = await db
       .from('restaurants')
       .select('*')
       .eq('id', id)
@@ -45,7 +48,8 @@ export type SupabaseRestaurant = {
 
 export const getRestaurants = async (): Promise<SupabaseRestaurant[]> => {
   try {
-    const { data, error } = await supabase
+    if (!supabase) throw new Error('offline')
+    const { data, error } = await db
       .from('restaurants')
       .select('*')
       .order('id', { ascending: true })
@@ -60,7 +64,8 @@ export const getRestaurants = async (): Promise<SupabaseRestaurant[]> => {
 // ==================== FAVORITOS ====================
 
 export const getFavorites = async (userId: string): Promise<number[]> => {
-  const { data, error } = await supabase
+  if (!supabase) return []
+  const { data, error } = await db
     .from('favorites')
     .select('restaurant_id')
     .eq('user_id', userId)
@@ -70,7 +75,8 @@ export const getFavorites = async (userId: string): Promise<number[]> => {
 }
 
 export const toggleFavorite = async (userId: string, restaurantId: number): Promise<boolean> => {
-  const { data: existing } = await supabase
+  if (!supabase) return false
+  const { data: existing } = await db
     .from('favorites')
     .select('id')
     .eq('user_id', userId)
@@ -78,10 +84,10 @@ export const toggleFavorite = async (userId: string, restaurantId: number): Prom
     .single()
 
   if (existing) {
-    await supabase.from('favorites').delete().eq('id', existing.id)
+    await db.from('favorites').delete().eq('id', existing.id)
     return false
   } else {
-    await supabase.from('favorites').insert({ user_id: userId, restaurant_id: restaurantId })
+    await db.from('favorites').insert({ user_id: userId, restaurant_id: restaurantId })
     return true
   }
 }
@@ -99,7 +105,8 @@ export type Review = {
 }
 
 export const getReviews = async (restaurantId: number): Promise<Review[]> => {
-  const { data, error } = await supabase
+  if (!supabase) return []
+  const { data, error } = await db
     .from('reviews')
     .select('*')
     .eq('restaurant_id', restaurantId)
@@ -117,7 +124,7 @@ export const addReview = async (
   rating: number,
   comment: string
 ): Promise<Review> => {
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('reviews')
     .insert({
       user_id: userId,
@@ -146,7 +153,8 @@ export type OrderHistory = {
 }
 
 export const getOrderHistory = async (userId: string): Promise<OrderHistory[]> => {
-  const { data, error } = await supabase
+  if (!supabase) return []
+  const { data, error } = await db
     .from('order_history')
     .select('*')
     .eq('user_id', userId)
@@ -164,7 +172,8 @@ export const saveOrder = async (
   total: number,
   deliveryAddress: string
 ): Promise<void> => {
-  const { error } = await supabase
+  if (!supabase) return
+  const { error } = await db
     .from('order_history')
     .insert({
       user_id: userId,
@@ -180,21 +189,25 @@ export const saveOrder = async (
 // ==================== ADMIN ====================
 
 export const deleteRestaurant = async (id: number): Promise<void> => {
-  const { error } = await supabase.from('restaurants').delete().eq('id', id)
+  if (!supabase) return
+  const { error } = await db.from('restaurants').delete().eq('id', id)
   if (error) throw error
 }
 
 export const insertRestaurant = async (data: Partial<SupabaseRestaurant>): Promise<void> => {
-  const { error } = await supabase.from('restaurants').insert(data)
+  if (!supabase) return
+  const { error } = await db.from('restaurants').insert(data)
   if (error) throw error
 }
 
 export const updateRestaurant = async (id: number, data: Partial<SupabaseRestaurant>): Promise<void> => {
-  const { error } = await supabase.from('restaurants').update(data).eq('id', id)
+  if (!supabase) return
+  const { error } = await db.from('restaurants').update(data).eq('id', id)
   if (error) throw error
 }
 
 export const updateCardapio = async (restaurantId: number, cardapio: CardapioItem[]): Promise<void> => {
-  const { error } = await supabase.from('restaurants').update({ cardapio }).eq('id', restaurantId)
+  if (!supabase) return
+  const { error } = await db.from('restaurants').update({ cardapio }).eq('id', restaurantId)
   if (error) throw error
 }

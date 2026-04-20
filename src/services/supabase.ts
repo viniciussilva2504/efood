@@ -1,14 +1,18 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY || ''
+const supabaseUrl = (process.env.REACT_APP_SUPABASE_URL || '').trim()
+const supabaseAnonKey = (process.env.REACT_APP_SUPABASE_ANON_KEY || '').trim()
 
-const createSafeClient = (): SupabaseClient | null => {
-  if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn('Supabase env vars missing — running in offline mode')
-    return null
+let supabase: SupabaseClient | null = null
+
+try {
+  if (supabaseUrl && supabaseAnonKey && supabaseUrl.startsWith('http')) {
+    supabase = createClient(supabaseUrl, supabaseAnonKey)
+  } else {
+    console.warn('Supabase env vars missing or invalid — running in offline mode')
   }
-  return createClient(supabaseUrl, supabaseAnonKey)
+} catch (err) {
+  console.warn('Supabase init failed — running in offline mode', err)
 }
 
-export const supabase = createSafeClient() as SupabaseClient
+export { supabase }
