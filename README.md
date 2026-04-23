@@ -107,11 +107,10 @@ src/
 
 **Vinicius Silva** — Frontend Developer · React + TypeScript
 
-- GitHub: [@viniciussilva2504](https://github.com/viniciussilva2504)
-- LinkedIn: [Vinicius Silva](https://www.linkedin.com/in/viniciussilva2504/)
+[![GitHub](https://img.shields.io/badge/GitHub-viniciussilva2504-181717?style=flat-square&logo=github)](https://github.com/viniciussilva2504)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-vjsilva2504-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/vjsilva2504/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-00e5ff?style=flat-square&logo=vercel&logoColor=black)](https://portfolio-ebon-nine-95.vercel.app)
 
 ---
 
-> Projeto desenvolvido como parte da formação Full-Stack, demonstrando domínio de React, TypeScript, Redux Toolkit, integração com APIs REST e boas práticas de desenvolvimento front-end.
-
-[🔗 Acesse a versão de produção](https://efood-app.pages.dev)
+> Project developed as part of a Full-Stack programme, demonstrating proficiency in React, TypeScript, Redux Toolkit, REST API integration and modern frontend best practices.
