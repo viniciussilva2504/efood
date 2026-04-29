@@ -62,3 +62,46 @@ CREATE POLICY "Users can view own orders" ON order_history
   FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can insert own orders" ON order_history
   FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- ================================================
+-- menu_items — Tabela relacional para itens do cardápio
+-- Migração do campo JSONB restaurants.cardapio
+-- ================================================
+
+CREATE TABLE IF NOT EXISTS menu_items (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  restaurant_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+  nome TEXT NOT NULL,
+  descricao TEXT NOT NULL DEFAULT '',
+  preco NUMERIC(10,2) NOT NULL,
+  porcao TEXT NOT NULL DEFAULT '',
+  foto TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_menu_items_restaurant ON menu_items(restaurant_id);
+
+ALTER TABLE menu_items ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public read menu_items" ON menu_items
+  FOR SELECT USING (true);
+
+CREATE POLICY "Auth write menu_items" ON menu_items
+  FOR ALL USING (auth.role() = 'authenticated');
+
+-- Migrar dados existentes do JSONB para a nova tabela
+INSERT INTO menu_items (restaurant_id, nome, descricao, preco, porcao, foto)
+SELECT
+  r.id,
+  (item->>'nome')::TEXT,
+  COALESCE((item->>'descricao')::TEXT, ''),
+  (item->>'preco')::NUMERIC,
+  COALESCE((item->>'porcao')::TEXT, ''),
+  COALESCE((item->>'foto')::TEXT, '')
+FROM restaurants r,
+  jsonb_array_elements(r.cardapio) AS item
+WHERE r.cardapio IS NOT NULL
+  AND jsonb_array_length(r.cardapio) > 0;
+
+-- Após confirmar a migração, remover a coluna JSONB:
+-- ALTER TABLE restaurants DROP COLUMN IF EXISTS cardapio;

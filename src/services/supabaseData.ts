@@ -4,16 +4,28 @@ import { mockRestaurants } from './mockData'
 
 const db = supabase!
 
+const toRestaurant = (row: Record<string, unknown>): SupabaseRestaurant => ({
+  ...(row as Omit<SupabaseRestaurant, 'cardapio'>),
+  cardapio: ((row.menu_items as CardapioItem[]) || []).map((item) => ({
+    id: item.id,
+    nome: item.nome,
+    descricao: item.descricao,
+    preco: Number(item.preco),
+    porcao: item.porcao,
+    foto: item.foto,
+  })),
+})
+
 export const getRestaurantById = async (id: number): Promise<SupabaseRestaurant> => {
   try {
     if (!supabase) throw new Error('offline')
     const { data, error } = await db
       .from('restaurants')
-      .select('*')
+      .select('*, menu_items(*)')
       .eq('id', id)
       .single()
     if (error) throw error
-    return data as SupabaseRestaurant
+    return toRestaurant(data as Record<string, unknown>)
   } catch {
     console.warn('Supabase indisponível, usando dados locais para restaurante', id)
     const mock = mockRestaurants.find((r) => r.id === id)
@@ -51,10 +63,10 @@ export const getRestaurants = async (): Promise<SupabaseRestaurant[]> => {
     if (!supabase) throw new Error('offline')
     const { data, error } = await db
       .from('restaurants')
-      .select('*')
+      .select('*, menu_items(*)')
       .order('id', { ascending: true })
     if (error) throw error
-    return data as SupabaseRestaurant[]
+    return (data as Record<string, unknown>[]).map(toRestaurant)
   } catch {
     console.warn('Supabase indisponível, usando dados locais')
     return mockRestaurants
@@ -196,18 +208,52 @@ export const deleteRestaurant = async (id: number): Promise<void> => {
 
 export const insertRestaurant = async (data: Partial<SupabaseRestaurant>): Promise<void> => {
   if (!supabase) return
-  const { error } = await db.from('restaurants').insert(data)
+  const { cardapio: _, menu_items: __, ...rest } = data as Record<string, unknown>
+  const { error } = await db.from('restaurants').insert(rest)
   if (error) throw error
 }
 
 export const updateRestaurant = async (id: number, data: Partial<SupabaseRestaurant>): Promise<void> => {
   if (!supabase) return
-  const { error } = await db.from('restaurants').update(data).eq('id', id)
+  const { cardapio: _, menu_items: __, ...rest } = data as Record<string, unknown>
+  const { error } = await db.from('restaurants').update(rest).eq('id', id)
   if (error) throw error
 }
 
-export const updateCardapio = async (restaurantId: number, cardapio: CardapioItem[]): Promise<void> => {
-  if (!supabase) return
-  const { error } = await db.from('restaurants').update({ cardapio }).eq('id', restaurantId)
+// ==================== MENU ITEMS CRUD ====================
+
+export const addMenuItem = async (
+  restaurantId: number,
+  item: Omit<CardapioItem, 'id' | 'quantidade'>
+): Promise<CardapioItem> => {
+  if (!supabase) throw new Error('offline')
+  const { data, error } = await db
+    .from('menu_items')
+    .insert({ restaurant_id: restaurantId, ...item })
+    .select()
+    .single()
+  if (error) throw error
+  return {
+    id: (data as Record<string, unknown>).id as number,
+    nome: (data as Record<string, unknown>).nome as string,
+    descricao: (data as Record<string, unknown>).descricao as string,
+    preco: Number((data as Record<string, unknown>).preco),
+    porcao: (data as Record<string, unknown>).porcao as string,
+    foto: (data as Record<string, unknown>).foto as string,
+  }
+}
+
+export const updateMenuItem = async (
+  itemId: number,
+  item: Partial<Omit<CardapioItem, 'id' | 'quantidade'>>
+): Promise<void> => {
+  if (!supabase) throw new Error('offline')
+  const { error } = await db.from('menu_items').update(item).eq('id', itemId)
+  if (error) throw error
+}
+
+export const deleteMenuItem = async (itemId: number): Promise<void> => {
+  if (!supabase) throw new Error('offline')
+  const { error } = await db.from('menu_items').delete().eq('id', itemId)
   if (error) throw error
 }

@@ -1,7 +1,7 @@
 // Use canonical types from supabaseData
 import type { SupabaseRestaurant, CardapioItem } from '../../services/supabaseData'
 import React, { useEffect, useState } from 'react'
-import { getRestaurants, deleteRestaurant, insertRestaurant, updateRestaurant, updateCardapio } from '../../services/supabaseData'
+import { getRestaurants, deleteRestaurant, insertRestaurant, updateRestaurant, addMenuItem, updateMenuItem, deleteMenuItem } from '../../services/supabaseData'
 import RestaurantForm from './RestaurantForm'
 import CardapioForm from './CardapioForm'
 
@@ -56,22 +56,22 @@ export default function AdminRestaurants(): React.ReactElement {
 
   const handleCardapioSave = async (item: CardapioItem) => {
     if (cardapioEditId !== null) {
-      const rest = restaurants.find(r => r.id === cardapioEditId)
-      if (!rest) return
-      let newCardapio = rest.cardapio ? [...rest.cardapio] : []
-      if (cardapioEditItem) {
-        // Editar item existente
-        newCardapio = newCardapio.map((i) => i.id === cardapioEditItem.id ? { ...i, ...item } : i)
-      } else {
-        // Adicionar novo item
-        const newId = Date.now()
-        newCardapio.push({ ...item, id: newId })
-      }
       try {
-        await updateCardapio(cardapioEditId, newCardapio)
-        // Buscar dados atualizados do backend para garantir persistência
-        const updated = await getRestaurants()
-        setRestaurants(updated)
+        if (cardapioEditItem) {
+          // Editar item existente
+          await updateMenuItem(cardapioEditItem.id, item)
+          setRestaurants((prev) => prev.map((r) => r.id === cardapioEditId
+            ? { ...r, cardapio: r.cardapio.map((i) => i.id === cardapioEditItem.id ? { ...i, ...item } : i) }
+            : r
+          ))
+        } else {
+          // Adicionar novo item
+          const newItem = await addMenuItem(cardapioEditId, item)
+          setRestaurants((prev) => prev.map((r) => r.id === cardapioEditId
+            ? { ...r, cardapio: [...(r.cardapio || []), newItem] }
+            : r
+          ))
+        }
       } catch (err) {
         alert('Error saving menu: ' + ((err as Error)?.message || err))
       }
@@ -82,11 +82,11 @@ export default function AdminRestaurants(): React.ReactElement {
   }
 
   const handleCardapioDelete = async (restId: number, itemId: number) => {
-    const rest = restaurants.find(r => r.id === restId)
-    if (!rest || !rest.cardapio) return
-    const newCardapio = rest.cardapio.filter((i) => i.id !== itemId)
-    await updateCardapio(restId, newCardapio)
-    setRestaurants((prev) => prev.map((r) => r.id === restId ? { ...r, cardapio: newCardapio } : r))
+    await deleteMenuItem(itemId)
+    setRestaurants((prev) => prev.map((r) => r.id === restId
+      ? { ...r, cardapio: r.cardapio.filter((i) => i.id !== itemId) }
+      : r
+    ))
   }
 
   if (loading) return <div>Loading...</div>
