@@ -56,7 +56,7 @@
         </div>
         <Logo src="/images/logo.svg" alt="efood" />
         <TextHeader>
-          Viva experiências gastronómicas no conforto da sua casa
+          Viva experiências gastronômicas no conforto da sua casa
         </TextHeader>
         {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       </Imagem>
